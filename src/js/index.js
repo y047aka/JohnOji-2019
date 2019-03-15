@@ -31,7 +31,7 @@ const view = state => (
 )
 
 window.onload = async () => {
-  const standings = await axios.get('https://m.nascar.com/live/feeds/series_1/4776/live_feed.json').catch(e => { console.log(e) })
+  const standings = await axios.get('https://y047aka.github.io/MotorSportsData/WEC/Sebring1000miles.json').catch(e => { console.log(e) })
 
   app({
     init: standings.data,
