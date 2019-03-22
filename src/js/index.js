@@ -31,7 +31,7 @@ const view = state => (
 )
 
 window.onload = async () => {
-  const standings = await axios.get('https://y047aka.github.io/MotorSportsData/WEC/Sebring1000miles.json').catch(e => { console.log(e) })
+  const standings = await axios.get('https://y047aka.github.io/MotorSportsData/races/WEC/Sebring1000miles.json').catch(e => { console.log(e) })
 
   app({
     init: standings.data,
