@@ -9,7 +9,7 @@ import Html.Events exposing (..)
 import Http
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (hardcoded, optional, required)
-import Time
+import Time exposing (posixToMillis)
 
 
 main =
@@ -39,7 +39,7 @@ type UserState
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Model Init
-    , fetchJson 1560461282000
+    , fetchJson 1560462132417
     )
 
 
@@ -56,7 +56,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Tick posix ->
-            ( model, fetchJson 1560461286674)
+            ( model, fetchJson (posixToMillis posix) )
 
         Recieve (Ok vehicles) ->
             ( { model | userState = Loaded vehicles }, Cmd.none )
