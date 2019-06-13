@@ -6142,15 +6142,15 @@ var author$project$Main$viewRaces = function (d) {
 					])),
 				A2(
 				elm$html$Html$td,
-				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class(d.category)
+					]),
 				_List_fromArray(
 					[
 						A2(
 						elm$html$Html$p,
-						_List_fromArray(
-							[
-								elm$html$Html$Attributes$class(d.category)
-							]),
+						_List_Nil,
 						_List_fromArray(
 							[
 								elm$html$Html$text(
@@ -6163,16 +6163,6 @@ var author$project$Main$viewRaces = function (d) {
 				_List_fromArray(
 					[
 						elm$html$Html$text(d.state)
-					])),
-				A2(
-				elm$html$Html$td,
-				_List_fromArray(
-					[
-						elm$html$Html$Attributes$class(d.category)
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text(d.category)
 					])),
 				A2(
 				elm$html$Html$td,
@@ -6323,6 +6313,7 @@ var elm$html$Html$section = _VirtualDom_node('section');
 var elm$html$Html$table = _VirtualDom_node('table');
 var elm$html$Html$tbody = _VirtualDom_node('tbody');
 var elm$html$Html$th = _VirtualDom_node('th');
+var elm$html$Html$thead = _VirtualDom_node('thead');
 var author$project$Main$view = function (model) {
 	return {
 		body: _List_fromArray(
@@ -6355,149 +6346,148 @@ var author$project$Main$view = function (model) {
 											_List_fromArray(
 												[
 													A2(
-													elm$html$Html$tr,
+													elm$html$Html$thead,
 													_List_Nil,
 													_List_fromArray(
 														[
 															A2(
-															elm$html$Html$th,
+															elm$html$Html$tr,
 															_List_Nil,
 															_List_fromArray(
 																[
-																	elm$html$Html$text('Pos')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('#')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('State')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Category')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Team')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Driver')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Car')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Tyre')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Laps')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Gap')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Interval')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Last Lap')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Best Lap')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('S1')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('BS1')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('S2')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('BS2')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('S3')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('BS3')
-																])),
-															A2(
-															elm$html$Html$th,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	elm$html$Html$text('Pit Stops')
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Pos')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('#')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('State')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Team')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Driver')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Car')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Tyre')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Laps')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Gap')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Interval')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Last Lap')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Best Lap')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('S1')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('BS1')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('S2')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('BS2')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('S3')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('BS3')
+																		])),
+																	A2(
+																	elm$html$Html$th,
+																	_List_Nil,
+																	_List_fromArray(
+																		[
+																			elm$html$Html$text('Pit Stops')
+																		]))
 																]))
 														])),
 													A2(

@@ -17,7 +17,8 @@ body {
   display: grid;
   grid-template-rows: auto auto auto;
   font-size: 1.6rem;
-  color: #2e4d6b; }
+  background: #111;
+  color: #EEE; }
   @media screen and (max-width: 479px) {
     body {
       grid-template-columns: 1.5rem 1fr 1.5rem; } }
@@ -69,51 +70,41 @@ main {
     text-decoration: none; }
   main table.leaderboard {
     width: 100%;
-    border-collapse: collapse; }
-    main table.leaderboard tr th {
+    border-collapse: collapse;
+    background: #222; }
+    main table.leaderboard thead th {
       padding: 0.8rem 0.5rem;
       text-align: left;
       font-size: 1.1rem;
       font-weight: bold; }
-      main table.leaderboard tr th:first-child, main table.leaderboard tr th:nth-child(2) {
+      main table.leaderboard thead th:first-child, main table.leaderboard thead th:nth-child(2) {
         text-align: center; }
-    main table.leaderboard tr td {
+    main table.leaderboard tbody tr:nth-child(odd) > td {
+      background: #333; }
+    main table.leaderboard tbody tr:nth-child(5n+1) {
+      border-top: solid 0.1rem #555; }
+    main table.leaderboard tbody tr td {
       padding: 0.5rem 0.5rem;
       font-size: 1.3rem;
       font-weight: 600; }
-      main table.leaderboard tr td:first-child, main table.leaderboard tr td:nth-child(2) {
+      main table.leaderboard tbody tr td:first-child, main table.leaderboard tbody tr td:nth-child(2), main table.leaderboard tbody tr td:nth-child(3) {
         text-align: center; }
-      main table.leaderboard tr td p {
+      main table.leaderboard tbody tr td p {
         padding: 0.3rem 0;
-        font-weight: 600;
-        background: #333;
-        color: #FFF;
-        border-radius: 0.2rem; }
-        main table.leaderboard tr td p.LMP1 {
-          background: red; }
-        main table.leaderboard tr td p.LMP2 {
-          background: blue; }
-        main table.leaderboard tr td p.LMGTEPro {
-          background: green; }
-        main table.leaderboard tr td p.LMGTEAm {
-          background: orange; }
-      main table.leaderboard tr td ul li {
-        display: inline-block;
-        list-style: none; }
-        main table.leaderboard tr td ul li + li {
-          margin-left: 1.5rem; }
-      main table.leaderboard tr td.LMP1 {
-        color: red; }
-      main table.leaderboard tr td.LMP2 {
-        color: blue; }
-      main table.leaderboard tr td.LMGTEPro {
-        color: green; }
-      main table.leaderboard tr td.LMGTEAm {
-        color: orange; }
-      main table.leaderboard tr td.best-time {
-        color: #FC0; }
-    main table.leaderboard tr:nth-child(odd) > td {
-      background: rgba(46, 77, 107, 0.05); }
+        font-weight: bold;
+        background: #666;
+        color: #EEE;
+        border-radius: 0.3rem; }
+      main table.leaderboard tbody tr td.LMP1 > p {
+        background: #e60000; }
+      main table.leaderboard tbody tr td.LMP2 > p {
+        background: #002bff; }
+      main table.leaderboard tbody tr td.LMGTEPro > p {
+        background: green; }
+      main table.leaderboard tbody tr td.LMGTEAm > p {
+        background: #e68600; }
+      main table.leaderboard tbody tr td.best-time {
+        color: #e6bf00; }
 
 footer.site-footer a {
   color: #265973;

@@ -16,7 +16,8 @@ body
   display: grid
   grid-template-rows: auto auto auto
   font-size: 1.6rem
-  color: hsl(210, 40%, 30%)
+  background: #111
+  color: #EEE
 
   @media screen and (max-width: 479px)
     grid-template-columns: 1.5rem 1fr 1.5rem
@@ -83,8 +84,9 @@ main
   table.leaderboard
     width: 100%
     border-collapse: collapse
+    background: #222
 
-    tr
+    thead
       th
         padding: 0.8rem 0.5rem
         text-align: left
@@ -95,59 +97,45 @@ main
         &:nth-child(2)
           text-align: center
 
-      td
-        padding: 0.5rem 0.5rem
-        font-size: 1.3rem
-        font-weight: 600
-
-        &:first-child,
-        &:nth-child(2)
-          text-align: center
-
-        p
-          padding: 0.3rem 0
-          font-weight: 600
+    tbody
+      tr
+        &:nth-child(odd) > td
           background: #333
-          color: #FFF
-          border-radius: 0.2rem
 
-          &.LMP1
-            background: red
+        &:nth-child(5n+1)
+          border-top: solid 0.1rem #555
 
-          &.LMP2
-            background: blue
+        td
+          padding: 0.5rem 0.5rem
+          font-size: 1.3rem
+          font-weight: 600
 
-          &.LMGTEPro
-            background: green
+          &:first-child,
+          &:nth-child(2),
+          &:nth-child(3)
+            text-align: center
 
-          &.LMGTEAm
-            background: orange
+          p
+            padding: 0.3rem 0
+            font-weight: bold
+            background: #666
+            color: #EEE
+            border-radius: 0.3rem
 
-        ul
-          li
-            display: inline-block
-            list-style: none
-          
-            & + li
-              margin-left: 1.5rem
+          &.LMP1 > p
+            background: hsl(0, 100%, 45%)
 
-        &.LMP1
-          color: red
+          &.LMP2 > p
+            background: hsl(230, 100%, 50%)
 
-        &.LMP2
-          color: blue
+          &.LMGTEPro > p
+            background: hsl(120, 100%, 25%)
 
-        &.LMGTEPro
-          color: green
+          &.LMGTEAm > p
+            background: hsl(35, 100%, 45%)
 
-        &.LMGTEAm
-          color: orange
-
-        &.best-time
-          color: #FC0
-
-      &:nth-child(odd) > td
-        background: hsla(210, 40%, 30%, 0.05)
+          &.best-time
+            color: hsl(50, 100%, 45%)
 
 footer.site-footer
   a
