@@ -39,7 +39,7 @@ type UserState
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Model Init
-    , fetchJson 1560460447855
+    , fetchJson 1560460989381
     )
 
 
@@ -56,7 +56,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Tick posix ->
-            ( model, fetchJson 1560460989381 )
+            ( model, fetchJson 1560461282000 )
 
         Recieve (Ok vehicles) ->
             ( { model | userState = Loaded vehicles }, Cmd.none )
