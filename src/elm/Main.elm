@@ -17,7 +17,7 @@ main =
         { init = init
         , update = update
         , view = view
-        , subscriptions = subscriptions
+        , subscriptions = \_ -> Sub.none
         }
 
 
@@ -39,7 +39,7 @@ type UserState
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Model Init
-    , fetchJson 1560462132417
+    , fetchJson 1560463226000
     )
 
 
@@ -161,7 +161,7 @@ subscriptions model =
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = "Jon Oji 2019"
+    { title = "John Oji 2019"
     , body =
         [ siteHeader
         , node "main"
