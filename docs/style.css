@@ -78,11 +78,25 @@ main {
       main table.leaderboard tr th:first-child, main table.leaderboard tr th:nth-child(2) {
         text-align: center; }
     main table.leaderboard tr td {
-      padding: 0.8rem 0.5rem;
+      padding: 0.5rem 0.5rem;
       font-size: 1.3rem;
       font-weight: 600; }
       main table.leaderboard tr td:first-child, main table.leaderboard tr td:nth-child(2) {
         text-align: center; }
+      main table.leaderboard tr td p {
+        padding: 0.3rem 0;
+        font-weight: 600;
+        background: #333;
+        color: #FFF;
+        border-radius: 0.2rem; }
+        main table.leaderboard tr td p.LMP1 {
+          background: red; }
+        main table.leaderboard tr td p.LMP2 {
+          background: blue; }
+        main table.leaderboard tr td p.LMGTEPro {
+          background: green; }
+        main table.leaderboard tr td p.LMGTEAm {
+          background: orange; }
       main table.leaderboard tr td ul li {
         display: inline-block;
         list-style: none; }

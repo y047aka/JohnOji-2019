@@ -39,7 +39,7 @@ type UserState
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Model Init
-    , fetchJson 1560458708794
+    , fetchJson 1560459853101
     )
 
 
@@ -56,7 +56,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Tick posix ->
-            ( model, fetchJson 1560459853101 )
+            ( model, fetchJson 1560460447855 )
 
         Recieve (Ok vehicles) ->
             ( { model | userState = Loaded vehicles }, Cmd.none )
@@ -222,7 +222,9 @@ viewRaces d =
     -- in
     tr []
         [ td [] [ text (String.fromInt d.runningPosition) ]
-        , td [] [ text (String.fromInt d.vehicleNumber) ]
+        , td []
+            [ p [ class d.category ] [ text (String.fromInt d.vehicleNumber) ]
+            ]
         , td [] [ text d.state ]
         , td [ class d.category ] [ text d.category ]
         , td [] [ text d.car ]
