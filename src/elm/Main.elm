@@ -68,7 +68,7 @@ update msg model =
 fetchJson : Cmd Msg
 fetchJson =
     Http.get
-        { url = "https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=1560457957862"
+        { url = "https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=1560458708794"
         , expect = Http.expectJson Recieve userDecoder
         }
 
