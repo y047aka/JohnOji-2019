@@ -88,6 +88,16 @@ main {
         list-style: none; }
         main table.leaderboard tr td ul li + li {
           margin-left: 1.5rem; }
+      main table.leaderboard tr td.LMP1 {
+        color: red; }
+      main table.leaderboard tr td.LMP2 {
+        color: blue; }
+      main table.leaderboard tr td.LMGTEPro {
+        color: green; }
+      main table.leaderboard tr td.LMGTEAm {
+        color: orange; }
+      main table.leaderboard tr td.best-time {
+        color: #FC0; }
     main table.leaderboard tr:nth-child(odd) > td {
       background: rgba(46, 77, 107, 0.05); }
 

@@ -224,7 +224,7 @@ viewRaces d =
         [ td [] [ text (String.fromInt d.runningPosition) ]
         , td [] [ text (String.fromInt d.vehicleNumber) ]
         , td [] [ text d.state ]
-        , td [] [ text d.category ]
+        , td [ class d.category ] [ text d.category ]
         , td [] [ text d.car ]
         , td [] [ text d.fullName ]
 
@@ -235,11 +235,11 @@ viewRaces d =
         , td [] [ text d.lastLapTime ]
         , td [] [ text d.bestLapTime ]
         , td [] [ text d.currentSector1 ]
-        , td [] [ text d.bestSector1 ]
+        , td [ class "best-time" ] [ text d.bestSector1 ]
         , td [] [ text d.currentSector2 ]
-        , td [] [ text d.bestSector2 ]
+        , td [ class "best-time" ] [ text d.bestSector2 ]
         , td [] [ text d.currentSector3 ]
-        , td [] [ text d.bestSector3 ]
+        , td [ class "best-time" ] [ text d.bestSector3 ]
         , td [] [ text (String.fromInt d.pitStop) ]
         ]
 

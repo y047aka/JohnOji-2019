@@ -6471,7 +6471,10 @@ var author$project$Main$viewRaces = function (d) {
 					])),
 				A2(
 				elm$html$Html$td,
-				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class(d.category)
+					]),
 				_List_fromArray(
 					[
 						elm$html$Html$text(d.category)
@@ -6534,7 +6537,10 @@ var author$project$Main$viewRaces = function (d) {
 					])),
 				A2(
 				elm$html$Html$td,
-				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('best-time')
+					]),
 				_List_fromArray(
 					[
 						elm$html$Html$text(d.bestSector1)
@@ -6548,7 +6554,10 @@ var author$project$Main$viewRaces = function (d) {
 					])),
 				A2(
 				elm$html$Html$td,
-				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('best-time')
+					]),
 				_List_fromArray(
 					[
 						elm$html$Html$text(d.bestSector2)
@@ -6562,7 +6571,10 @@ var author$project$Main$viewRaces = function (d) {
 					])),
 				A2(
 				elm$html$Html$td,
-				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('best-time')
+					]),
 				_List_fromArray(
 					[
 						elm$html$Html$text(d.bestSector3)
