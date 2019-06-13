@@ -6025,7 +6025,7 @@ var elm$http$Http$get = function (r) {
 var author$project$Main$fetchJson = elm$http$Http$get(
 	{
 		expect: A2(elm$http$Http$expectJson, author$project$Main$Recieve, author$project$Main$userDecoder),
-		url: 'https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json'
+		url: 'https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=1560457957862'
 	});
 var author$project$Main$init = function (_n0) {
 	return _Utils_Tuple2(
