@@ -161,7 +161,7 @@ subscriptions model =
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = "Leaderboard - WEC"
+    { title = "Jon Oji 2019"
     , body =
         [ siteHeader
         , node "main"

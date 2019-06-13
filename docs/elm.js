@@ -6843,7 +6843,7 @@ var author$project$Main$view = function (model) {
 					])),
 				author$project$Main$siteFooter
 			]),
-		title: 'Leaderboard - WEC'
+		title: 'Jon Oji 2019'
 	};
 };
 var elm$browser$Browser$External = function (a) {
