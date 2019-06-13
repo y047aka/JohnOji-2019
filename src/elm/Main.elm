@@ -80,12 +80,15 @@ fetchJson =
 type alias Vehicle =
     { runningPosition : Int
     , vehicleNumber : Int
+    , state : String
+    , category : String
+    , car : String
     , fullName : String
 
     -- , vehicleManufacturer : String
     , lapsCompleted : String
+    , gap : String
 
-    -- , delta : Float
     -- , last_lap_time : Float
     -- , last_lap_speed : Float
     -- , pitStops : List Stop
@@ -111,13 +114,16 @@ vehicle =
     Decode.succeed Vehicle
         |> required "ranking" Decode.int
         |> required "number" Decode.int
+        |> required "state" Decode.string
+        |> required "category" Decode.string
+        |> required "car" Decode.string
         |> required "driver" Decode.string
         -- |> required "vehicle_manufacturer" Decode.string
         |> required "lap" Decode.string
+        |> required "gap" Decode.string
 
 
 
--- |> required "delta" Decode.float
 -- |> required "last_lap_time" Decode.float
 -- |> required "last_lap_speed" Decode.float
 -- |> required "pit_stops" (Decode.list stopDecoder)
@@ -159,10 +165,14 @@ view model =
                             [ tr []
                                 [ th [] [ text "Pos" ]
                                 , th [] [ text "#" ]
+                                , th [] [ text "State" ]
+                                , th [] [ text "Category" ]
+                                , th [] [ text "Car" ]
                                 , th [] [ text "Driver" ]
-                                , th [] [ text "" ]
+
+                                -- , th [] [ text "" ]
                                 , th [] [ text "Laps" ]
-                                , th [] [ text "Delta" ]
+                                , th [] [ text "Gap" ]
                                 , th [] [ text "Last Lap" ]
                                 , th [] [ text "mph" ]
                                 , th [] [ text "Pit Stops" ]
@@ -196,12 +206,15 @@ viewRaces d =
     tr []
         [ td [] [ text (String.fromInt d.runningPosition) ]
         , td [] [ text (String.fromInt d.vehicleNumber) ]
+        , td [] [ text d.state ]
+        , td [] [ text d.category ]
+        , td [] [ text d.car ]
         , td [] [ text d.fullName ]
 
         -- , td [] [ text manufacturer ]
         , td [] [ text d.lapsCompleted ]
+        , td [] [ text d.gap ]
 
-        -- , td [] [ text (d.delta |> String.fromFloat) ]
         -- , td [] [ text (d.last_lap_time |> String.fromFloat) ]
         -- , td [] [ text (d.last_lap_speed |> String.fromFloat) ]
         -- , td [] [ ul [] (List.map pitStop (d.pitStops |> List.reverse)) ]

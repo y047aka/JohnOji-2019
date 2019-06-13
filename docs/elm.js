@@ -5023,30 +5023,46 @@ var NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required = F3(
 			A2(elm$json$Json$Decode$field, key, valDecoder),
 			decoder);
 	});
-var author$project$Main$Vehicle = F4(
-	function (runningPosition, vehicleNumber, fullName, lapsCompleted) {
-		return {fullName: fullName, lapsCompleted: lapsCompleted, runningPosition: runningPosition, vehicleNumber: vehicleNumber};
+var author$project$Main$Vehicle = F8(
+	function (runningPosition, vehicleNumber, state, category, car, fullName, lapsCompleted, gap) {
+		return {car: car, category: category, fullName: fullName, gap: gap, lapsCompleted: lapsCompleted, runningPosition: runningPosition, state: state, vehicleNumber: vehicleNumber};
 	});
 var elm$json$Json$Decode$int = _Json_decodeInt;
 var elm$json$Json$Decode$string = _Json_decodeString;
 var elm$json$Json$Decode$succeed = _Json_succeed;
 var author$project$Main$vehicle = A3(
 	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-	'lap',
+	'gap',
 	elm$json$Json$Decode$string,
 	A3(
 		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-		'driver',
+		'lap',
 		elm$json$Json$Decode$string,
 		A3(
 			NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-			'number',
-			elm$json$Json$Decode$int,
+			'driver',
+			elm$json$Json$Decode$string,
 			A3(
 				NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-				'ranking',
-				elm$json$Json$Decode$int,
-				elm$json$Json$Decode$succeed(author$project$Main$Vehicle)))));
+				'car',
+				elm$json$Json$Decode$string,
+				A3(
+					NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+					'category',
+					elm$json$Json$Decode$string,
+					A3(
+						NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+						'state',
+						elm$json$Json$Decode$string,
+						A3(
+							NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+							'number',
+							elm$json$Json$Decode$int,
+							A3(
+								NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+								'ranking',
+								elm$json$Json$Decode$int,
+								elm$json$Json$Decode$succeed(author$project$Main$Vehicle)))))))));
 var elm$json$Json$Decode$list = _Json_decodeList;
 var author$project$Main$userDecoder = A2(
 	elm$json$Json$Decode$field,
@@ -6378,6 +6394,27 @@ var author$project$Main$viewRaces = function (d) {
 				_List_Nil,
 				_List_fromArray(
 					[
+						elm$html$Html$text(d.state)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.category)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.car)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
 						elm$html$Html$text(d.fullName)
 					])),
 				A2(
@@ -6386,6 +6423,13 @@ var author$project$Main$viewRaces = function (d) {
 				_List_fromArray(
 					[
 						elm$html$Html$text(d.lapsCompleted)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.gap)
 					]))
 			]));
 };
@@ -6455,14 +6499,28 @@ var author$project$Main$view = function (model) {
 															_List_Nil,
 															_List_fromArray(
 																[
-																	elm$html$Html$text('Driver')
+																	elm$html$Html$text('State')
 																])),
 															A2(
 															elm$html$Html$th,
 															_List_Nil,
 															_List_fromArray(
 																[
-																	elm$html$Html$text('')
+																	elm$html$Html$text('Category')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Car')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Driver')
 																])),
 															A2(
 															elm$html$Html$th,
@@ -6476,7 +6534,7 @@ var author$project$Main$view = function (model) {
 															_List_Nil,
 															_List_fromArray(
 																[
-																	elm$html$Html$text('Delta')
+																	elm$html$Html$text('Gap')
 																])),
 															A2(
 															elm$html$Html$th,
