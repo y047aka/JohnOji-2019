@@ -88,10 +88,16 @@ type alias Vehicle =
     -- , vehicleManufacturer : String
     , lapsCompleted : String
     , gap : String
-
-    -- , last_lap_time : Float
-    -- , last_lap_speed : Float
-    -- , pitStops : List Stop
+    , interval : String
+    , lastLapTime : String
+    , bestLapTime : String
+    , currentSector1 : String
+    , bestSector1 : String
+    , currentSector2 : String
+    , bestSector2 : String
+    , currentSector3 : String
+    , bestSector3 : String
+    , pitStop : Int
     }
 
 
@@ -121,12 +127,16 @@ vehicle =
         -- |> required "vehicle_manufacturer" Decode.string
         |> required "lap" Decode.string
         |> required "gap" Decode.string
-
-
-
--- |> required "last_lap_time" Decode.float
--- |> required "last_lap_speed" Decode.float
--- |> required "pit_stops" (Decode.list stopDecoder)
+        |> required "gapPrev" Decode.string
+        |> required "lastlap" Decode.string
+        |> required "bestlap" Decode.string
+        |> required "currentSector1" Decode.string
+        |> required "bestSector1" Decode.string
+        |> required "currentSector2" Decode.string
+        |> required "bestSector2" Decode.string
+        |> required "currentSector3" Decode.string
+        |> required "bestSector3" Decode.string
+        |> required "pitstop" Decode.int
 
 
 stopDecoder : Decode.Decoder Stop
@@ -173,8 +183,15 @@ view model =
                                 -- , th [] [ text "" ]
                                 , th [] [ text "Laps" ]
                                 , th [] [ text "Gap" ]
+                                , th [] [ text "Interval" ]
                                 , th [] [ text "Last Lap" ]
-                                , th [] [ text "mph" ]
+                                , th [] [ text "Best Lap" ]
+                                , th [] [ text "S1" ]
+                                , th [] [ text "BS1" ]
+                                , th [] [ text "S2" ]
+                                , th [] [ text "BS2" ]
+                                , th [] [ text "S3" ]
+                                , th [] [ text "BS3" ]
                                 , th [] [ text "Pit Stops" ]
                                 ]
                             , tbody [] (List.map viewRaces vehicles)
@@ -214,10 +231,16 @@ viewRaces d =
         -- , td [] [ text manufacturer ]
         , td [] [ text d.lapsCompleted ]
         , td [] [ text d.gap ]
-
-        -- , td [] [ text (d.last_lap_time |> String.fromFloat) ]
-        -- , td [] [ text (d.last_lap_speed |> String.fromFloat) ]
-        -- , td [] [ ul [] (List.map pitStop (d.pitStops |> List.reverse)) ]
+        , td [] [ text d.interval ]
+        , td [] [ text d.lastLapTime ]
+        , td [] [ text d.bestLapTime ]
+        , td [] [ text d.currentSector1 ]
+        , td [] [ text d.bestSector1 ]
+        , td [] [ text d.currentSector2 ]
+        , td [] [ text d.bestSector2 ]
+        , td [] [ text d.currentSector3 ]
+        , td [] [ text d.bestSector3 ]
+        , td [] [ text (String.fromInt d.pitStop) ]
         ]
 
 

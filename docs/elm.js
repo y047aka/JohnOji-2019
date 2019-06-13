@@ -5023,46 +5023,119 @@ var NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required = F3(
 			A2(elm$json$Json$Decode$field, key, valDecoder),
 			decoder);
 	});
-var author$project$Main$Vehicle = F8(
-	function (runningPosition, vehicleNumber, state, category, car, fullName, lapsCompleted, gap) {
-		return {car: car, category: category, fullName: fullName, gap: gap, lapsCompleted: lapsCompleted, runningPosition: runningPosition, state: state, vehicleNumber: vehicleNumber};
-	});
+var author$project$Main$Vehicle = function (runningPosition) {
+	return function (vehicleNumber) {
+		return function (state) {
+			return function (category) {
+				return function (car) {
+					return function (fullName) {
+						return function (lapsCompleted) {
+							return function (gap) {
+								return function (interval) {
+									return function (lastLapTime) {
+										return function (bestLapTime) {
+											return function (currentSector1) {
+												return function (bestSector1) {
+													return function (currentSector2) {
+														return function (bestSector2) {
+															return function (currentSector3) {
+																return function (bestSector3) {
+																	return function (pitStop) {
+																		return {bestLapTime: bestLapTime, bestSector1: bestSector1, bestSector2: bestSector2, bestSector3: bestSector3, car: car, category: category, currentSector1: currentSector1, currentSector2: currentSector2, currentSector3: currentSector3, fullName: fullName, gap: gap, interval: interval, lapsCompleted: lapsCompleted, lastLapTime: lastLapTime, pitStop: pitStop, runningPosition: runningPosition, state: state, vehicleNumber: vehicleNumber};
+																	};
+																};
+															};
+														};
+													};
+												};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
 var elm$json$Json$Decode$int = _Json_decodeInt;
 var elm$json$Json$Decode$string = _Json_decodeString;
 var elm$json$Json$Decode$succeed = _Json_succeed;
 var author$project$Main$vehicle = A3(
 	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-	'gap',
-	elm$json$Json$Decode$string,
+	'pitstop',
+	elm$json$Json$Decode$int,
 	A3(
 		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-		'lap',
+		'bestSector3',
 		elm$json$Json$Decode$string,
 		A3(
 			NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-			'driver',
+			'currentSector3',
 			elm$json$Json$Decode$string,
 			A3(
 				NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-				'car',
+				'bestSector2',
 				elm$json$Json$Decode$string,
 				A3(
 					NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-					'category',
+					'currentSector2',
 					elm$json$Json$Decode$string,
 					A3(
 						NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-						'state',
+						'bestSector1',
 						elm$json$Json$Decode$string,
 						A3(
 							NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-							'number',
-							elm$json$Json$Decode$int,
+							'currentSector1',
+							elm$json$Json$Decode$string,
 							A3(
 								NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-								'ranking',
-								elm$json$Json$Decode$int,
-								elm$json$Json$Decode$succeed(author$project$Main$Vehicle)))))))));
+								'bestlap',
+								elm$json$Json$Decode$string,
+								A3(
+									NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+									'lastlap',
+									elm$json$Json$Decode$string,
+									A3(
+										NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+										'gapPrev',
+										elm$json$Json$Decode$string,
+										A3(
+											NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+											'gap',
+											elm$json$Json$Decode$string,
+											A3(
+												NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+												'lap',
+												elm$json$Json$Decode$string,
+												A3(
+													NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+													'driver',
+													elm$json$Json$Decode$string,
+													A3(
+														NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+														'car',
+														elm$json$Json$Decode$string,
+														A3(
+															NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+															'category',
+															elm$json$Json$Decode$string,
+															A3(
+																NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+																'state',
+																elm$json$Json$Decode$string,
+																A3(
+																	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+																	'number',
+																	elm$json$Json$Decode$int,
+																	A3(
+																		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+																		'ranking',
+																		elm$json$Json$Decode$int,
+																		elm$json$Json$Decode$succeed(author$project$Main$Vehicle)))))))))))))))))));
 var elm$json$Json$Decode$list = _Json_decodeList;
 var author$project$Main$userDecoder = A2(
 	elm$json$Json$Decode$field,
@@ -6430,6 +6503,77 @@ var author$project$Main$viewRaces = function (d) {
 				_List_fromArray(
 					[
 						elm$html$Html$text(d.gap)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.interval)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.lastLapTime)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.bestLapTime)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.currentSector1)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.bestSector1)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.currentSector2)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.bestSector2)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.currentSector3)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.bestSector3)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(
+						elm$core$String$fromInt(d.pitStop))
 					]))
 			]));
 };
@@ -6541,6 +6685,13 @@ var author$project$Main$view = function (model) {
 															_List_Nil,
 															_List_fromArray(
 																[
+																	elm$html$Html$text('Interval')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
 																	elm$html$Html$text('Last Lap')
 																])),
 															A2(
@@ -6548,7 +6699,49 @@ var author$project$Main$view = function (model) {
 															_List_Nil,
 															_List_fromArray(
 																[
-																	elm$html$Html$text('mph')
+																	elm$html$Html$text('Best Lap')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('S1')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('BS1')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('S2')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('BS2')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('S3')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('BS3')
 																])),
 															A2(
 															elm$html$Html$th,
