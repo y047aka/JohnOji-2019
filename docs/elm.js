@@ -5027,21 +5027,25 @@ var author$project$Main$Vehicle = function (runningPosition) {
 	return function (vehicleNumber) {
 		return function (state) {
 			return function (category) {
-				return function (car) {
+				return function (team) {
 					return function (fullName) {
-						return function (lapsCompleted) {
-							return function (gap) {
-								return function (interval) {
-									return function (lastLapTime) {
-										return function (bestLapTime) {
-											return function (currentSector1) {
-												return function (bestSector1) {
-													return function (currentSector2) {
-														return function (bestSector2) {
-															return function (currentSector3) {
-																return function (bestSector3) {
-																	return function (pitStop) {
-																		return {bestLapTime: bestLapTime, bestSector1: bestSector1, bestSector2: bestSector2, bestSector3: bestSector3, car: car, category: category, currentSector1: currentSector1, currentSector2: currentSector2, currentSector3: currentSector3, fullName: fullName, gap: gap, interval: interval, lapsCompleted: lapsCompleted, lastLapTime: lastLapTime, pitStop: pitStop, runningPosition: runningPosition, state: state, vehicleNumber: vehicleNumber};
+						return function (car) {
+							return function (tyre) {
+								return function (lapsCompleted) {
+									return function (gap) {
+										return function (interval) {
+											return function (lastLapTime) {
+												return function (bestLapTime) {
+													return function (currentSector1) {
+														return function (bestSector1) {
+															return function (currentSector2) {
+																return function (bestSector2) {
+																	return function (currentSector3) {
+																		return function (bestSector3) {
+																			return function (pitStop) {
+																				return {bestLapTime: bestLapTime, bestSector1: bestSector1, bestSector2: bestSector2, bestSector3: bestSector3, car: car, category: category, currentSector1: currentSector1, currentSector2: currentSector2, currentSector3: currentSector3, fullName: fullName, gap: gap, interval: interval, lapsCompleted: lapsCompleted, lastLapTime: lastLapTime, pitStop: pitStop, runningPosition: runningPosition, state: state, team: team, tyre: tyre, vehicleNumber: vehicleNumber};
+																			};
+																		};
 																	};
 																};
 															};
@@ -5113,7 +5117,7 @@ var author$project$Main$vehicle = A3(
 												elm$json$Json$Decode$string,
 												A3(
 													NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-													'driver',
+													'tyre',
 													elm$json$Json$Decode$string,
 													A3(
 														NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
@@ -5121,21 +5125,29 @@ var author$project$Main$vehicle = A3(
 														elm$json$Json$Decode$string,
 														A3(
 															NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-															'category',
+															'driver',
 															elm$json$Json$Decode$string,
 															A3(
 																NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-																'state',
+																'team',
 																elm$json$Json$Decode$string,
 																A3(
 																	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-																	'number',
-																	elm$json$Json$Decode$int,
+																	'category',
+																	elm$json$Json$Decode$string,
 																	A3(
 																		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-																		'ranking',
-																		elm$json$Json$Decode$int,
-																		elm$json$Json$Decode$succeed(author$project$Main$Vehicle)))))))))))))))))));
+																		'state',
+																		elm$json$Json$Decode$string,
+																		A3(
+																			NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+																			'number',
+																			elm$json$Json$Decode$int,
+																			A3(
+																				NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+																				'ranking',
+																				elm$json$Json$Decode$int,
+																				elm$json$Json$Decode$succeed(author$project$Main$Vehicle)))))))))))))))))))));
 var elm$json$Json$Decode$list = _Json_decodeList;
 var author$project$Main$userDecoder = A2(
 	elm$json$Json$Decode$field,
@@ -6032,7 +6044,7 @@ var author$project$Main$fetchJson = function (_int) {
 var author$project$Main$init = function (_n0) {
 	return _Utils_Tuple2(
 		author$project$Main$Model(author$project$Main$Init),
-		author$project$Main$fetchJson(1560460989381));
+		author$project$Main$fetchJson(1560461282000));
 };
 var author$project$Main$Tick = function (a) {
 	return {$: 'Tick', a: a};
@@ -6338,7 +6350,7 @@ var author$project$Main$update = F2(
 			var posix = msg.a;
 			return _Utils_Tuple2(
 				model,
-				author$project$Main$fetchJson(1560461282000));
+				author$project$Main$fetchJson(1560461286674));
 		} else {
 			if (msg.a.$ === 'Ok') {
 				var vehicles = msg.a.a;
@@ -6498,7 +6510,7 @@ var author$project$Main$viewRaces = function (d) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						elm$html$Html$text(d.car)
+						elm$html$Html$text(d.team)
 					])),
 				A2(
 				elm$html$Html$td,
@@ -6506,6 +6518,20 @@ var author$project$Main$viewRaces = function (d) {
 				_List_fromArray(
 					[
 						elm$html$Html$text(d.fullName)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.car)
+					])),
+				A2(
+				elm$html$Html$td,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(d.tyre)
 					])),
 				A2(
 				elm$html$Html$td,
@@ -6683,7 +6709,7 @@ var author$project$Main$view = function (model) {
 															_List_Nil,
 															_List_fromArray(
 																[
-																	elm$html$Html$text('Car')
+																	elm$html$Html$text('Team')
 																])),
 															A2(
 															elm$html$Html$th,
@@ -6691,6 +6717,20 @@ var author$project$Main$view = function (model) {
 															_List_fromArray(
 																[
 																	elm$html$Html$text('Driver')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Car')
+																])),
+															A2(
+															elm$html$Html$th,
+															_List_Nil,
+															_List_fromArray(
+																[
+																	elm$html$Html$text('Tyre')
 																])),
 															A2(
 															elm$html$Html$th,

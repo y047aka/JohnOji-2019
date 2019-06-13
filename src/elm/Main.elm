@@ -39,7 +39,7 @@ type UserState
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Model Init
-    , fetchJson 1560460989381
+    , fetchJson 1560461282000
     )
 
 
@@ -56,7 +56,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Tick posix ->
-            ( model, fetchJson 1560461282000 )
+            ( model, fetchJson 1560461286674)
 
         Recieve (Ok vehicles) ->
             ( { model | userState = Loaded vehicles }, Cmd.none )
@@ -82,10 +82,10 @@ type alias Vehicle =
     , vehicleNumber : Int
     , state : String
     , category : String
-    , car : String
+    , team : String
     , fullName : String
-
-    -- , vehicleManufacturer : String
+    , car : String
+    , tyre : String
     , lapsCompleted : String
     , gap : String
     , interval : String
@@ -122,9 +122,10 @@ vehicle =
         |> required "number" Decode.int
         |> required "state" Decode.string
         |> required "category" Decode.string
-        |> required "car" Decode.string
+        |> required "team" Decode.string
         |> required "driver" Decode.string
-        -- |> required "vehicle_manufacturer" Decode.string
+        |> required "car" Decode.string
+        |> required "tyre" Decode.string
         |> required "lap" Decode.string
         |> required "gap" Decode.string
         |> required "gapPrev" Decode.string
@@ -177,10 +178,10 @@ view model =
                                 , th [] [ text "#" ]
                                 , th [] [ text "State" ]
                                 , th [] [ text "Category" ]
-                                , th [] [ text "Car" ]
+                                , th [] [ text "Team" ]
                                 , th [] [ text "Driver" ]
-
-                                -- , th [] [ text "" ]
+                                , th [] [ text "Car" ]
+                                , th [] [ text "Tyre" ]
                                 , th [] [ text "Laps" ]
                                 , th [] [ text "Gap" ]
                                 , th [] [ text "Interval" ]
@@ -227,10 +228,10 @@ viewRaces d =
             ]
         , td [] [ text d.state ]
         , td [ class d.category ] [ text d.category ]
-        , td [] [ text d.car ]
+        , td [] [ text d.team ]
         , td [] [ text d.fullName ]
-
-        -- , td [] [ text manufacturer ]
+        , td [] [ text d.car ]
+        , td [] [ text d.tyre ]
         , td [] [ text d.lapsCompleted ]
         , td [] [ text d.gap ]
         , td [] [ text d.interval ]
