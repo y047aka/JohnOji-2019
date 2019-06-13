@@ -6772,7 +6772,7 @@ var author$project$Main$view = function (model) {
 					])),
 				author$project$Main$siteFooter
 			]),
-		title: 'Leaderboard - NASCAR'
+		title: 'Leaderboard - WEC'
 	};
 };
 var elm$browser$Browser$External = function (a) {

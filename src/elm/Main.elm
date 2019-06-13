@@ -160,7 +160,7 @@ subscriptions model =
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = "Leaderboard - NASCAR"
+    { title = "Leaderboard - WEC"
     , body =
         [ siteHeader
         , node "main"
