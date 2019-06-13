@@ -6032,7 +6032,7 @@ var author$project$Main$fetchJson = function (_int) {
 var author$project$Main$init = function (_n0) {
 	return _Utils_Tuple2(
 		author$project$Main$Model(author$project$Main$Init),
-		author$project$Main$fetchJson(1560459853101));
+		author$project$Main$fetchJson(1560460447855));
 };
 var author$project$Main$Tick = function (a) {
 	return {$: 'Tick', a: a};
@@ -6338,7 +6338,7 @@ var author$project$Main$update = F2(
 			var posix = msg.a;
 			return _Utils_Tuple2(
 				model,
-				author$project$Main$fetchJson(1560460447855));
+				author$project$Main$fetchJson(1560460989381));
 		} else {
 			if (msg.a.$ === 'Ok') {
 				var vehicles = msg.a.a;
