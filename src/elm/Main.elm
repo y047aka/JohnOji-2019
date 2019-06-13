@@ -39,7 +39,7 @@ type UserState
 init : () -> ( Model, Cmd Msg )
 init _ =
     ( Model Init
-    , fetchJson
+    , fetchJson 1560458708794
     )
 
 
@@ -55,8 +55,8 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Tick _ ->
-            ( model, fetchJson )
+        Tick posix ->
+            ( model, fetchJson 1560459853101 )
 
         Recieve (Ok vehicles) ->
             ( { model | userState = Loaded vehicles }, Cmd.none )
@@ -65,10 +65,10 @@ update msg model =
             ( { model | userState = Failed error }, Cmd.none )
 
 
-fetchJson : Cmd Msg
-fetchJson =
+fetchJson : Int -> Cmd Msg
+fetchJson int =
     Http.get
-        { url = "https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=1560458708794"
+        { url = "https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=" ++ String.fromInt int
         , expect = Http.expectJson Recieve userDecoder
         }
 

@@ -6022,15 +6022,17 @@ var elm$http$Http$get = function (r) {
 	return elm$http$Http$request(
 		{body: elm$http$Http$emptyBody, expect: r.expect, headers: _List_Nil, method: 'GET', timeout: elm$core$Maybe$Nothing, tracker: elm$core$Maybe$Nothing, url: r.url});
 };
-var author$project$Main$fetchJson = elm$http$Http$get(
-	{
-		expect: A2(elm$http$Http$expectJson, author$project$Main$Recieve, author$project$Main$userDecoder),
-		url: 'https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=1560458708794'
-	});
+var author$project$Main$fetchJson = function (_int) {
+	return elm$http$Http$get(
+		{
+			expect: A2(elm$http$Http$expectJson, author$project$Main$Recieve, author$project$Main$userDecoder),
+			url: 'https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=' + elm$core$String$fromInt(_int)
+		});
+};
 var author$project$Main$init = function (_n0) {
 	return _Utils_Tuple2(
 		author$project$Main$Model(author$project$Main$Init),
-		author$project$Main$fetchJson);
+		author$project$Main$fetchJson(1560458708794));
 };
 var author$project$Main$Tick = function (a) {
 	return {$: 'Tick', a: a};
@@ -6333,7 +6335,10 @@ var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var author$project$Main$update = F2(
 	function (msg, model) {
 		if (msg.$ === 'Tick') {
-			return _Utils_Tuple2(model, author$project$Main$fetchJson);
+			var posix = msg.a;
+			return _Utils_Tuple2(
+				model,
+				author$project$Main$fetchJson(1560459853101));
 		} else {
 			if (msg.a.$ === 'Ok') {
 				var vehicles = msg.a.a;
