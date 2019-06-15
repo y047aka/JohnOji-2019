@@ -227,7 +227,7 @@ viewRaceSummary summary =
                             span [ class "yellow" ] [ text "YELLOW FLAG" ]
 
                         "full_yellow" ->
-                            span [ class "fcy" ] [ text "FULL COURSE YELLOW" ]
+                            span [ class "fcy" ] [ text "FCY" ]
 
                         "red" ->
                             span [ class "red" ] [ text "RED FLAG" ]

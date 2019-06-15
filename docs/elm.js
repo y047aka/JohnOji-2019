@@ -6569,7 +6569,7 @@ var author$project$Main$viewRaceSummary = function (summary) {
 														]),
 													_List_fromArray(
 														[
-															elm$html$Html$text('FULL COURSE YELLOW')
+															elm$html$Html$text('FCY')
 														]));
 											case 'red':
 												return A2(
