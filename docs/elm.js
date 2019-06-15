@@ -5027,25 +5027,29 @@ var author$project$Main$Race = F2(
 	function (summary, vehicles) {
 		return {summary: summary, vehicles: vehicles};
 	});
-var author$project$Main$RaceSummary = F3(
-	function (eventName, elapsedTime, raceState) {
-		return {elapsedTime: elapsedTime, eventName: eventName, raceState: raceState};
+var author$project$Main$RaceSummary = F4(
+	function (eventName, elapsedTime, raceState, airTemp) {
+		return {airTemp: airTemp, elapsedTime: elapsedTime, eventName: eventName, raceState: raceState};
 	});
 var elm$json$Json$Decode$string = _Json_decodeString;
 var elm$json$Json$Decode$succeed = _Json_succeed;
 var author$project$Main$raceOutlineDecoder = A3(
 	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-	'racestate',
+	'airTemp',
 	elm$json$Json$Decode$string,
 	A3(
 		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-		'elapsedTime',
+		'racestate',
 		elm$json$Json$Decode$string,
 		A3(
 			NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-			'eventName',
+			'elapsedTime',
 			elm$json$Json$Decode$string,
-			elm$json$Json$Decode$succeed(author$project$Main$RaceSummary))));
+			A3(
+				NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+				'eventName',
+				elm$json$Json$Decode$string,
+				elm$json$Json$Decode$succeed(author$project$Main$RaceSummary)))));
 var author$project$Main$Vehicle = function (runningPosition) {
 	return function (vehicleNumber) {
 		return function (state) {
@@ -6417,9 +6421,8 @@ var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 			return 3;
 	}
 };
-var elm$html$Html$a = _VirtualDom_node('a');
-var elm$html$Html$footer = _VirtualDom_node('footer');
-var elm$html$Html$p = _VirtualDom_node('p');
+var elm$html$Html$h1 = _VirtualDom_node('h1');
+var elm$html$Html$header = _VirtualDom_node('header');
 var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
 var elm$json$Json$Encode$string = _Json_wrap;
@@ -6431,45 +6434,6 @@ var elm$html$Html$Attributes$stringProperty = F2(
 			elm$json$Json$Encode$string(string));
 	});
 var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
-var elm$html$Html$Attributes$href = function (url) {
-	return A2(
-		elm$html$Html$Attributes$stringProperty,
-		'href',
-		_VirtualDom_noJavaScriptUri(url));
-};
-var elm$html$Html$Attributes$target = elm$html$Html$Attributes$stringProperty('target');
-var author$project$Main$siteFooter = A2(
-	elm$html$Html$footer,
-	_List_fromArray(
-		[
-			elm$html$Html$Attributes$class('site-footer')
-		]),
-	_List_fromArray(
-		[
-			A2(
-			elm$html$Html$p,
-			_List_fromArray(
-				[
-					elm$html$Html$Attributes$class('copyright')
-				]),
-			_List_fromArray(
-				[
-					elm$html$Html$text('© 2019 '),
-					A2(
-					elm$html$Html$a,
-					_List_fromArray(
-						[
-							elm$html$Html$Attributes$href('https://y047aka.me'),
-							elm$html$Html$Attributes$target('_blank')
-						]),
-					_List_fromArray(
-						[
-							elm$html$Html$text('y047aka')
-						]))
-				]))
-		]));
-var elm$html$Html$h1 = _VirtualDom_node('h1');
-var elm$html$Html$header = _VirtualDom_node('header');
 var author$project$Main$siteHeader = A2(
 	elm$html$Html$header,
 	_List_fromArray(
@@ -6523,14 +6487,21 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_Nil,
 								_List_fromArray(
 									[
-										elm$html$Html$text('elapsedTime')
+										elm$html$Html$text('Elapsed')
 									])),
 								A2(
 								elm$html$Html$th,
 								_List_Nil,
 								_List_fromArray(
 									[
-										elm$html$Html$text('raceState')
+										elm$html$Html$text('State')
+									])),
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('Air-Temp')
 									]))
 							])),
 						A2(
@@ -6563,11 +6534,19 @@ var author$project$Main$viewRaceSummary = function (summary) {
 											[
 												elm$html$Html$text(summary.raceState)
 											]))
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(summary.airTemp + ' °C')
 									]))
 							]))
 					]))
 			]));
 };
+var elm$html$Html$p = _VirtualDom_node('p');
 var author$project$Main$viewVehicle = function (d) {
 	return A2(
 		elm$html$Html$tr,
@@ -6944,8 +6923,7 @@ var author$project$Main$view = function (model) {
 						return elm$html$Html$text(
 							elm$core$Debug$toString(error));
 				}
-			}(),
-				author$project$Main$siteFooter
+			}()
 			]),
 		title: 'John Oji 2019'
 	};

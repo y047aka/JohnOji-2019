@@ -50,26 +50,26 @@ header.site-header {
     padding: 3rem 0 0;
     font-size: 2.5rem; }
 
-main {
-  border-top: solid 0.1rem rgba(46, 77, 107, 0.5);
-  border-bottom: solid 0.1rem rgba(46, 77, 107, 0.5); }
-  main section {
-    padding: 3rem 0 4rem; }
-    main section + section {
-      border-top: solid 0.1rem rgba(46, 77, 107, 0.5); }
-  main h1 {
-    padding: 1rem 0;
-    font-size: 2rem; }
-  main * + h1 {
-    margin-top: 2rem; }
-  main h2 {
-    padding: 1rem 0;
-    font-size: 1.6rem; }
-  main * + h2 {
-    margin-top: 2rem; }
-  main a {
-    color: #0066cc;
-    text-decoration: none; }
+main section {
+  padding: 3rem 0 4rem; }
+
+main h1 {
+  padding: 1rem 0;
+  font-size: 2rem; }
+
+main * + h1 {
+  margin-top: 2rem; }
+
+main h2 {
+  padding: 1rem 0;
+  font-size: 1.6rem; }
+
+main * + h2 {
+  margin-top: 2rem; }
+
+main a {
+  color: #0066cc;
+  text-decoration: none; }
 
 .race-summary {
   padding: 1rem 1rem; }
@@ -77,9 +77,10 @@ main {
     border-collapse: collapse; }
     .race-summary table th, .race-summary table td {
       padding: 0.5rem 2rem 0.5rem 0;
-      text-align: left; }
+      text-align: left;
+      font-weight: 600; }
     .race-summary table th {
-      font-size: 1.3rem; }
+      font-size: 1.1rem; }
     .race-summary table td.race-state {
       text-transform: uppercase; }
     .race-summary table td span {
@@ -90,7 +91,8 @@ main {
       .race-summary table td span.green {
         background: green; }
       .race-summary table td span.full_yellow {
-        background: yellow; }
+        background: yellow;
+        color: #333; }
 
 .leaderboard {
   padding: 0; }
@@ -102,7 +104,7 @@ main {
       padding: 0.8rem 0.5rem;
       text-align: left;
       font-size: 1.1rem;
-      font-weight: bold; }
+      font-weight: 600; }
       .leaderboard table thead th:first-child, .leaderboard table thead th:nth-child(2) {
         text-align: center; }
     .leaderboard table tbody tr:nth-child(odd) > td {

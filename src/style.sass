@@ -55,14 +55,8 @@ header.site-header
     font-size: 2.5rem
 
 main
-  border-top: solid 0.1rem hsla(210, 40%, 30%, 0.5)
-  border-bottom: solid 0.1rem hsla(210, 40%, 30%, 0.5)
-
   section
     padding: 3rem 0 4rem
-
-    & + section
-      border-top: solid 0.1rem hsla(210, 40%, 30%, 0.5)
 
   h1
     padding: 1rem 0
@@ -91,9 +85,10 @@ main
     th, td
       padding: 0.5rem 2rem 0.5rem 0
       text-align: left
+      font-weight: 600
 
     th
-      font-size: 1.3rem
+      font-size: 1.1rem
 
     td
       &.race-state
@@ -110,6 +105,7 @@ main
 
         &.full_yellow
           background: yellow
+          color: #333
 
 .leaderboard
   padding: 0
@@ -124,7 +120,7 @@ main
         padding: 0.8rem 0.5rem
         text-align: left
         font-size: 1.1rem
-        font-weight: bold
+        font-weight: 600
 
         &:first-child,
         &:nth-child(2)

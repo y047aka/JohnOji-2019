@@ -111,6 +111,7 @@ type alias RaceSummary =
     { eventName : String
     , elapsedTime : String
     , raceState : String
+    , airTemp : String
     }
 
 
@@ -132,6 +133,7 @@ raceOutlineDecoder =
         |> required "eventName" Decode.string
         |> required "elapsedTime" Decode.string
         |> required "racestate" Decode.string
+        |> required "airTemp" Decode.string
 
 
 vehicleDecoder : Decode.Decoder Vehicle
@@ -196,7 +198,6 @@ view model =
 
             Failed error ->
                 text (Debug.toString error)
-        , siteFooter
         ]
     }
 
@@ -208,8 +209,9 @@ viewRaceSummary summary =
             [ text summary.eventName ]
         , table []
             [ tr []
-                [ th [] [ text "elapsedTime" ]
-                , th [] [ text "raceState" ]
+                [ th [] [ text "Elapsed" ]
+                , th [] [ text "State" ]
+                , th [] [ text "Air-Temp" ]
                 ]
             , tr []
                 [ td [] [ text summary.elapsedTime ]
@@ -217,6 +219,7 @@ viewRaceSummary summary =
                     [ span [ class summary.raceState ]
                         [ text summary.raceState ]
                     ]
+                , td [] [ text (summary.airTemp ++ " °C") ]
                 ]
             ]
         ]
