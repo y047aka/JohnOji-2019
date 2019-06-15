@@ -77,21 +77,25 @@ main
     text-decoration: none
 
 .race-summary
-  padding: 1rem 1rem
+  padding: 1.5rem 0
 
   table
+    margin: 0 auto
     border-collapse: collapse
 
     th, td
-      text-align: left
+      text-align: center
       font-weight: 600
 
+    th + th, td + td
+      border-left: solid 0.1rem #444
+
     th
-      padding: 0.2rem 2rem 0rem 0
-      font-size: 1.1rem
+      padding: 0.2rem 1.5rem 0
+      font-size: 0.9rem
 
     td
-      padding: 0.5rem 2rem 0.5rem 0
+      padding: 0 1.5rem 0.2rem 
 
       &.race-state
         span
@@ -114,6 +118,9 @@ main
 
           &.red
             background: red
+
+      &.weather
+        text-transform: uppercase
 
 .leaderboard
   padding: 0

@@ -72,17 +72,20 @@ main a {
   text-decoration: none; }
 
 .race-summary {
-  padding: 1rem 1rem; }
+  padding: 1.5rem 0; }
   .race-summary table {
+    margin: 0 auto;
     border-collapse: collapse; }
     .race-summary table th, .race-summary table td {
-      text-align: left;
+      text-align: center;
       font-weight: 600; }
+    .race-summary table th + th, .race-summary table td + td {
+      border-left: solid 0.1rem #444; }
     .race-summary table th {
-      padding: 0.2rem 2rem 0rem 0;
-      font-size: 1.1rem; }
+      padding: 0.2rem 1.5rem 0;
+      font-size: 0.9rem; }
     .race-summary table td {
-      padding: 0.5rem 2rem 0.5rem 0; }
+      padding: 0 1.5rem 0.2rem; }
       .race-summary table td.race-state span {
         display: block;
         min-width: 13rem;
@@ -99,6 +102,8 @@ main a {
           color: #000; }
         .race-summary table td.race-state span.red {
           background: red; }
+      .race-summary table td.weather {
+        text-transform: uppercase; }
 
 .leaderboard {
   padding: 0; }
