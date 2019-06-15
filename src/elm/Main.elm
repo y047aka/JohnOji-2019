@@ -191,34 +191,7 @@ view model =
                 node "main"
                     []
                     [ viewRaceSummary race.summary
-                    , section []
-                        [ table [ class "leaderboard" ]
-                            [ thead []
-                                [ tr []
-                                    [ th [] [ text "Pos" ]
-                                    , th [] [ text "#" ]
-                                    , th [] [ text "State" ]
-                                    , th [] [ text "Team" ]
-                                    , th [] [ text "Driver" ]
-                                    , th [] [ text "Car" ]
-                                    , th [] [ text "Tyre" ]
-                                    , th [] [ text "Laps" ]
-                                    , th [] [ text "Gap" ]
-                                    , th [] [ text "Interval" ]
-                                    , th [] [ text "Last Lap" ]
-                                    , th [] [ text "Best Lap" ]
-                                    , th [] [ text "S1" ]
-                                    , th [] [ text "BS1" ]
-                                    , th [] [ text "S2" ]
-                                    , th [] [ text "BS2" ]
-                                    , th [] [ text "S3" ]
-                                    , th [] [ text "BS3" ]
-                                    , th [] [ text "Pit Stops" ]
-                                    ]
-                                ]
-                            , tbody [] (List.map viewRaces race.vehicles)
-                            ]
-                        ]
+                    , viewRaceTable race.vehicles
                     ]
 
             Failed error ->
@@ -236,25 +209,53 @@ viewRaceSummary summary =
         , table []
             [ tr []
                 [ th [] [ text "elapsedTime" ]
-                , td [] [ text summary.elapsedTime ]
+                , th [] [ text "raceState" ]
                 ]
             , tr []
-                [ th [] [ text "raceState" ]
+                [ td [] [ text summary.elapsedTime ]
                 , td [ class "race-state" ]
                     [ span [ class summary.raceState ]
                         [ text summary.raceState ]
                     ]
                 ]
-            , tr []
-                [ th [] [ text "" ]
-                , td [] [ text "" ]
-                ]
             ]
         ]
 
 
-viewRaces : Vehicle -> Html Msg
-viewRaces d =
+viewRaceTable : List Vehicle -> Html Msg
+viewRaceTable vehicles =
+    section [ class "leaderboard" ]
+        [ table []
+            [ thead []
+                [ tr []
+                    [ th [] [ text "Pos" ]
+                    , th [] [ text "#" ]
+                    , th [] [ text "State" ]
+                    , th [] [ text "Team" ]
+                    , th [] [ text "Driver" ]
+                    , th [] [ text "Car" ]
+                    , th [] [ text "Tyre" ]
+                    , th [] [ text "Laps" ]
+                    , th [] [ text "Gap" ]
+                    , th [] [ text "Interval" ]
+                    , th [] [ text "Last Lap" ]
+                    , th [] [ text "Best Lap" ]
+                    , th [] [ text "S1" ]
+                    , th [] [ text "BS1" ]
+                    , th [] [ text "S2" ]
+                    , th [] [ text "BS2" ]
+                    , th [] [ text "S3" ]
+                    , th [] [ text "BS3" ]
+                    , th [] [ text "Pit Stops" ]
+                    ]
+                ]
+            , tbody [] (List.map viewVehicle vehicles)
+            ]
+        ]
+
+
+viewVehicle : Vehicle -> Html Msg
+viewVehicle d =
     tr []
         [ td [] [ text (String.fromInt d.runningPosition) ]
         , td [ class d.category ]

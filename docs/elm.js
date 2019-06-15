@@ -6526,11 +6526,11 @@ var author$project$Main$viewRaceSummary = function (summary) {
 										elm$html$Html$text('elapsedTime')
 									])),
 								A2(
-								elm$html$Html$td,
+								elm$html$Html$th,
 								_List_Nil,
 								_List_fromArray(
 									[
-										elm$html$Html$text(summary.elapsedTime)
+										elm$html$Html$text('raceState')
 									]))
 							])),
 						A2(
@@ -6539,11 +6539,11 @@ var author$project$Main$viewRaceSummary = function (summary) {
 						_List_fromArray(
 							[
 								A2(
-								elm$html$Html$th,
+								elm$html$Html$td,
 								_List_Nil,
 								_List_fromArray(
 									[
-										elm$html$Html$text('raceState')
+										elm$html$Html$text(summary.elapsedTime)
 									])),
 								A2(
 								elm$html$Html$td,
@@ -6564,31 +6564,11 @@ var author$project$Main$viewRaceSummary = function (summary) {
 												elm$html$Html$text(summary.raceState)
 											]))
 									]))
-							])),
-						A2(
-						elm$html$Html$tr,
-						_List_Nil,
-						_List_fromArray(
-							[
-								A2(
-								elm$html$Html$th,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text('')
-									])),
-								A2(
-								elm$html$Html$td,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text('')
-									]))
 							]))
 					]))
 			]));
 };
-var author$project$Main$viewRaces = function (d) {
+var author$project$Main$viewVehicle = function (d) {
 	return A2(
 		elm$html$Html$tr,
 		_List_Nil,
@@ -6764,14 +6744,180 @@ var author$project$Main$viewRaces = function (d) {
 					]))
 			]));
 };
+var elm$html$Html$tbody = _VirtualDom_node('tbody');
+var elm$html$Html$thead = _VirtualDom_node('thead');
+var author$project$Main$viewRaceTable = function (vehicles) {
+	return A2(
+		elm$html$Html$section,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('leaderboard')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$table,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$thead,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$tr,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Pos')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('#')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('State')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Team')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Driver')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Car')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Tyre')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Laps')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Gap')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Interval')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Last Lap')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Best Lap')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('S1')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('BS1')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('S2')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('BS2')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('S3')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('BS3')
+											])),
+										A2(
+										elm$html$Html$th,
+										_List_Nil,
+										_List_fromArray(
+											[
+												elm$html$Html$text('Pit Stops')
+											]))
+									]))
+							])),
+						A2(
+						elm$html$Html$tbody,
+						_List_Nil,
+						A2(elm$core$List$map, author$project$Main$viewVehicle, vehicles))
+					]))
+			]));
+};
 var elm$core$Debug$toString = _Debug_toString;
 var elm$virtual_dom$VirtualDom$node = function (tag) {
 	return _VirtualDom_node(
 		_VirtualDom_noScript(tag));
 };
 var elm$html$Html$node = elm$virtual_dom$VirtualDom$node;
-var elm$html$Html$tbody = _VirtualDom_node('tbody');
-var elm$html$Html$thead = _VirtualDom_node('thead');
 var author$project$Main$view = function (model) {
 	return {
 		body: _List_fromArray(
@@ -6791,170 +6937,7 @@ var author$project$Main$view = function (model) {
 							_List_fromArray(
 								[
 									author$project$Main$viewRaceSummary(race.summary),
-									A2(
-									elm$html$Html$section,
-									_List_Nil,
-									_List_fromArray(
-										[
-											A2(
-											elm$html$Html$table,
-											_List_fromArray(
-												[
-													elm$html$Html$Attributes$class('leaderboard')
-												]),
-											_List_fromArray(
-												[
-													A2(
-													elm$html$Html$thead,
-													_List_Nil,
-													_List_fromArray(
-														[
-															A2(
-															elm$html$Html$tr,
-															_List_Nil,
-															_List_fromArray(
-																[
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Pos')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('#')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('State')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Team')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Driver')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Car')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Tyre')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Laps')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Gap')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Interval')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Last Lap')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Best Lap')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('S1')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('BS1')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('S2')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('BS2')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('S3')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('BS3')
-																		])),
-																	A2(
-																	elm$html$Html$th,
-																	_List_Nil,
-																	_List_fromArray(
-																		[
-																			elm$html$Html$text('Pit Stops')
-																		]))
-																]))
-														])),
-													A2(
-													elm$html$Html$tbody,
-													_List_Nil,
-													A2(elm$core$List$map, author$project$Main$viewRaces, race.vehicles))
-												]))
-										]))
+									author$project$Main$viewRaceTable(race.vehicles)
 								]));
 					default:
 						var error = _n0.a;

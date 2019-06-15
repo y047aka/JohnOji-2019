@@ -70,64 +70,67 @@ main {
   main a {
     color: #0066cc;
     text-decoration: none; }
-  main table.leaderboard {
+
+.race-summary {
+  padding: 1rem 1rem; }
+  .race-summary table {
+    border-collapse: collapse; }
+    .race-summary table th, .race-summary table td {
+      padding: 0.5rem 2rem 0.5rem 0;
+      text-align: left; }
+    .race-summary table th {
+      font-size: 1.3rem; }
+    .race-summary table td.race-state {
+      text-transform: uppercase; }
+    .race-summary table td span {
+      padding: 0.2rem 0.5rem;
+      font-weight: bold;
+      letter-spacing: 0.05rem;
+      border-radius: 0.3rem; }
+      .race-summary table td span.green {
+        background: green; }
+      .race-summary table td span.full_yellow {
+        background: yellow; }
+
+.leaderboard {
+  padding: 0; }
+  .leaderboard table {
     width: 100%;
     border-collapse: collapse;
     background: #222; }
-    main table.leaderboard thead th {
+    .leaderboard table thead th {
       padding: 0.8rem 0.5rem;
       text-align: left;
       font-size: 1.1rem;
       font-weight: bold; }
-      main table.leaderboard thead th:first-child, main table.leaderboard thead th:nth-child(2) {
+      .leaderboard table thead th:first-child, .leaderboard table thead th:nth-child(2) {
         text-align: center; }
-    main table.leaderboard tbody tr:nth-child(odd) > td {
+    .leaderboard table tbody tr:nth-child(odd) > td {
       background: #333; }
-    main table.leaderboard tbody tr:nth-child(5n+1) {
+    .leaderboard table tbody tr:nth-child(5n+1) {
       border-top: solid 0.1rem #555; }
-    main table.leaderboard tbody tr td {
+    .leaderboard table tbody tr td {
       padding: 0.5rem 0.5rem;
       font-size: 1.3rem;
       font-weight: 600; }
-      main table.leaderboard tbody tr td:first-child, main table.leaderboard tbody tr td:nth-child(2), main table.leaderboard tbody tr td:nth-child(3) {
+      .leaderboard table tbody tr td:first-child, .leaderboard table tbody tr td:nth-child(2), .leaderboard table tbody tr td:nth-child(3) {
         text-align: center; }
-      main table.leaderboard tbody tr td p {
+      .leaderboard table tbody tr td p {
         padding: 0.3rem 0;
         font-weight: bold;
         background: #666;
         color: #EEE;
         border-radius: 0.3rem; }
-      main table.leaderboard tbody tr td.LMP1 > p {
+      .leaderboard table tbody tr td.LMP1 > p {
         background: #e60000; }
-      main table.leaderboard tbody tr td.LMP2 > p {
+      .leaderboard table tbody tr td.LMP2 > p {
         background: #002bff; }
-      main table.leaderboard tbody tr td.LMGTEPro > p {
+      .leaderboard table tbody tr td.LMGTEPro > p {
         background: green; }
-      main table.leaderboard tbody tr td.LMGTEAm > p {
+      .leaderboard table tbody tr td.LMGTEAm > p {
         background: #e68600; }
-      main table.leaderboard tbody tr td.best-time {
+      .leaderboard table tbody tr td.best-time {
         color: #e6bf00; }
-
-.race-summary {
-  padding: 1rem 2rem; }
-  .race-summary table {
-    border-collapse: collapse; }
-    .race-summary table th {
-      padding: 0;
-      text-align: left; }
-    .race-summary table td {
-      padding: 0.8rem 1rem; }
-      .race-summary table td.race-state {
-        text-transform: uppercase; }
-      .race-summary table td span {
-        padding: 0.2rem 0.5rem;
-        font-weight: bold;
-        letter-spacing: 0.05rem;
-        border-radius: 0.3rem; }
-        .race-summary table td span.green {
-          background: green; }
-        .race-summary table td span.full_yellow {
-          background: yellow; }
 
 footer.site-footer a {
   color: #265973;

@@ -82,7 +82,39 @@ main
     color: hsl(210, 100%, 40%)
     text-decoration: none
 
-  table.leaderboard
+.race-summary
+  padding: 1rem 1rem
+
+  table
+    border-collapse: collapse
+
+    th, td
+      padding: 0.5rem 2rem 0.5rem 0
+      text-align: left
+
+    th
+      font-size: 1.3rem
+
+    td
+      &.race-state
+        text-transform: uppercase
+
+      span
+        padding: 0.2rem 0.5rem
+        font-weight: bold
+        letter-spacing: 0.05rem
+        border-radius: 0.3rem
+
+        &.green
+          background: green
+
+        &.full_yellow
+          background: yellow
+
+.leaderboard
+  padding: 0
+
+  table
     width: 100%
     border-collapse: collapse
     background: #222
@@ -137,34 +169,6 @@ main
 
           &.best-time
             color: hsl(50, 100%, 45%)
-
-.race-summary
-  padding: 1rem 2rem
-
-  table
-    border-collapse: collapse
-
-    th
-      padding: 0
-      text-align: left
-
-    td
-      padding: 0.8rem 1rem
-
-      &.race-state
-        text-transform: uppercase
-
-      span
-        padding: 0.2rem 0.5rem
-        font-weight: bold
-        letter-spacing: 0.05rem
-        border-radius: 0.3rem
-
-        &.green
-          background: green
-
-        &.full_yellow
-          background: yellow
 
 footer.site-footer
   a
