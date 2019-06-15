@@ -6535,16 +6535,63 @@ var author$project$Main$viewRaceSummary = function (summary) {
 									]),
 								_List_fromArray(
 									[
-										A2(
-										elm$html$Html$span,
-										_List_fromArray(
-											[
-												elm$html$Html$Attributes$class(summary.raceState)
-											]),
-										_List_fromArray(
-											[
-												elm$html$Html$text(summary.raceState)
-											]))
+										function () {
+										var _n0 = summary.raceState;
+										switch (_n0) {
+											case 'green':
+												return A2(
+													elm$html$Html$span,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('green')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('GREEN FLAG')
+														]));
+											case 'yellow':
+												return A2(
+													elm$html$Html$span,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('yellow')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('YELLOW FLAG')
+														]));
+											case 'full_yellow':
+												return A2(
+													elm$html$Html$span,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('fcy')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('FULL COURSE YELLOW')
+														]));
+											case 'red':
+												return A2(
+													elm$html$Html$span,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('red')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('RED FLAG')
+														]));
+											default:
+												return A2(
+													elm$html$Html$span,
+													_List_Nil,
+													_List_fromArray(
+														[
+															elm$html$Html$text(summary.raceState)
+														]));
+										}
+									}()
 									])),
 								A2(
 								elm$html$Html$td,

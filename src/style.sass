@@ -92,19 +92,23 @@ main
 
     td
       &.race-state
-        text-transform: uppercase
+        span
+          display: block
+          min-width: 12rem
+          padding: 0.2rem
+          text-align: center
+          letter-spacing: 0.05rem
+          border-radius: 0.3rem
 
-      span
-        padding: 0.2rem 0.5rem
-        letter-spacing: 0.05rem
-        border-radius: 0.3rem
+          &.green
+            background: green
 
-        &.green
-          background: green
+          &.yellow, &.fcy
+            background: yellow
+            color: #000
 
-        &.yellow, &.full_yellow
-          background: yellow
-          color: #333
+          &.red
+            background: red
 
 .leaderboard
   padding: 0

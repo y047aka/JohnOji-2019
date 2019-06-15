@@ -81,17 +81,20 @@ main a {
       font-weight: 600; }
     .race-summary table th {
       font-size: 1.1rem; }
-    .race-summary table td.race-state {
-      text-transform: uppercase; }
-    .race-summary table td span {
-      padding: 0.2rem 0.5rem;
+    .race-summary table td.race-state span {
+      display: block;
+      min-width: 12rem;
+      padding: 0.2rem;
+      text-align: center;
       letter-spacing: 0.05rem;
       border-radius: 0.3rem; }
-      .race-summary table td span.green {
+      .race-summary table td.race-state span.green {
         background: green; }
-      .race-summary table td span.yellow, .race-summary table td span.full_yellow {
+      .race-summary table td.race-state span.yellow, .race-summary table td.race-state span.fcy {
         background: yellow;
-        color: #333; }
+        color: #000; }
+      .race-summary table td.race-state span.red {
+        background: red; }
 
 .leaderboard {
   padding: 0; }

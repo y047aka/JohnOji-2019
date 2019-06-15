@@ -219,8 +219,21 @@ viewRaceSummary summary =
             , tr []
                 [ td [] [ text summary.elapsedTime ]
                 , td [ class "race-state" ]
-                    [ span [ class summary.raceState ]
-                        [ text summary.raceState ]
+                    [ case summary.raceState of
+                        "green" ->
+                            span [ class "green" ] [ text "GREEN FLAG" ]
+
+                        "yellow" ->
+                            span [ class "yellow" ] [ text "YELLOW FLAG" ]
+
+                        "full_yellow" ->
+                            span [ class "fcy" ] [ text "FULL COURSE YELLOW" ]
+
+                        "red" ->
+                            span [ class "red" ] [ text "RED FLAG" ]
+
+                        _ ->
+                            span [] [ text summary.raceState ]
                     ]
                 , td [] [ text (summary.airTemp ++ " °C") ]
                 , td [] [ text (summary.trackTemp ++ " °C") ]
