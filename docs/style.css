@@ -85,12 +85,11 @@ main a {
       text-transform: uppercase; }
     .race-summary table td span {
       padding: 0.2rem 0.5rem;
-      font-weight: bold;
       letter-spacing: 0.05rem;
       border-radius: 0.3rem; }
       .race-summary table td span.green {
         background: green; }
-      .race-summary table td span.full_yellow {
+      .race-summary table td span.yellow, .race-summary table td span.full_yellow {
         background: yellow;
         color: #333; }
 
@@ -117,20 +116,21 @@ main a {
       font-weight: 600; }
       .leaderboard table tbody tr td:first-child, .leaderboard table tbody tr td:nth-child(2), .leaderboard table tbody tr td:nth-child(3) {
         text-align: center; }
-      .leaderboard table tbody tr td p {
-        padding: 0.3rem 0;
+      .leaderboard table tbody tr td.car-number p {
+        display: block;
+        padding: 0.3rem;
         font-weight: bold;
         background: #666;
         color: #EEE;
         border-radius: 0.3rem; }
-      .leaderboard table tbody tr td.LMP1 > p {
-        background: #e60000; }
-      .leaderboard table tbody tr td.LMP2 > p {
-        background: #002bff; }
-      .leaderboard table tbody tr td.LMGTEPro > p {
-        background: green; }
-      .leaderboard table tbody tr td.LMGTEAm > p {
-        background: #e68600; }
+        .leaderboard table tbody tr td.car-number p.LMP1 {
+          background: #e60000; }
+        .leaderboard table tbody tr td.car-number p.LMP2 {
+          background: #002bff; }
+        .leaderboard table tbody tr td.car-number p.LMGTEPro {
+          background: green; }
+        .leaderboard table tbody tr td.car-number p.LMGTEAm {
+          background: #e68600; }
       .leaderboard table tbody tr td.best-time {
         color: #e6bf00; }
 

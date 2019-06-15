@@ -112,6 +112,7 @@ type alias RaceSummary =
     , elapsedTime : String
     , raceState : String
     , airTemp : String
+    , trackTemp : String
     }
 
 
@@ -134,6 +135,7 @@ raceOutlineDecoder =
         |> required "elapsedTime" Decode.string
         |> required "racestate" Decode.string
         |> required "airTemp" Decode.string
+        |> required "trackTemp" Decode.string
 
 
 vehicleDecoder : Decode.Decoder Vehicle
@@ -212,6 +214,7 @@ viewRaceSummary summary =
                 [ th [] [ text "Elapsed" ]
                 , th [] [ text "State" ]
                 , th [] [ text "Air-Temp" ]
+                , th [] [ text "Track-Temp" ]
                 ]
             , tr []
                 [ td [] [ text summary.elapsedTime ]
@@ -220,6 +223,7 @@ viewRaceSummary summary =
                         [ text summary.raceState ]
                     ]
                 , td [] [ text (summary.airTemp ++ " °C") ]
+                , td [] [ text (summary.trackTemp ++ " °C") ]
                 ]
             ]
         ]
@@ -261,8 +265,8 @@ viewVehicle : Vehicle -> Html Msg
 viewVehicle d =
     tr []
         [ td [] [ text (String.fromInt d.runningPosition) ]
-        , td [ class d.category ]
-            [ p [] [ text (String.fromInt d.vehicleNumber) ]
+        , td [ class "car-number" ]
+            [ p [ class d.category ] [ text (String.fromInt d.vehicleNumber) ]
             ]
         , td [] [ text d.state ]
 

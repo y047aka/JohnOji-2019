@@ -96,14 +96,13 @@ main
 
       span
         padding: 0.2rem 0.5rem
-        font-weight: bold
         letter-spacing: 0.05rem
         border-radius: 0.3rem
 
         &.green
           background: green
 
-        &.full_yellow
+        &.yellow, &.full_yellow
           background: yellow
           color: #333
 
@@ -144,24 +143,26 @@ main
           &:nth-child(3)
             text-align: center
 
-          p
-            padding: 0.3rem 0
-            font-weight: bold
-            background: #666
-            color: #EEE
-            border-radius: 0.3rem
+          &.car-number
+            p
+              display: block
+              padding: 0.3rem
+              font-weight: bold
+              background: #666
+              color: #EEE
+              border-radius: 0.3rem
 
-          &.LMP1 > p
-            background: hsl(0, 100%, 45%)
+              &.LMP1
+                background: hsl(0, 100%, 45%)
 
-          &.LMP2 > p
-            background: hsl(230, 100%, 50%)
+              &.LMP2
+                background: hsl(230, 100%, 50%)
 
-          &.LMGTEPro > p
-            background: hsl(120, 100%, 25%)
+              &.LMGTEPro
+                background: hsl(120, 100%, 25%)
 
-          &.LMGTEAm > p
-            background: hsl(35, 100%, 45%)
+              &.LMGTEAm
+                background: hsl(35, 100%, 45%)
 
           &.best-time
             color: hsl(50, 100%, 45%)

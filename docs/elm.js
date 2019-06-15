@@ -5027,29 +5027,33 @@ var author$project$Main$Race = F2(
 	function (summary, vehicles) {
 		return {summary: summary, vehicles: vehicles};
 	});
-var author$project$Main$RaceSummary = F4(
-	function (eventName, elapsedTime, raceState, airTemp) {
-		return {airTemp: airTemp, elapsedTime: elapsedTime, eventName: eventName, raceState: raceState};
+var author$project$Main$RaceSummary = F5(
+	function (eventName, elapsedTime, raceState, airTemp, trackTemp) {
+		return {airTemp: airTemp, elapsedTime: elapsedTime, eventName: eventName, raceState: raceState, trackTemp: trackTemp};
 	});
 var elm$json$Json$Decode$string = _Json_decodeString;
 var elm$json$Json$Decode$succeed = _Json_succeed;
 var author$project$Main$raceOutlineDecoder = A3(
 	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-	'airTemp',
+	'trackTemp',
 	elm$json$Json$Decode$string,
 	A3(
 		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-		'racestate',
+		'airTemp',
 		elm$json$Json$Decode$string,
 		A3(
 			NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-			'elapsedTime',
+			'racestate',
 			elm$json$Json$Decode$string,
 			A3(
 				NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-				'eventName',
+				'elapsedTime',
 				elm$json$Json$Decode$string,
-				elm$json$Json$Decode$succeed(author$project$Main$RaceSummary)))));
+				A3(
+					NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+					'eventName',
+					elm$json$Json$Decode$string,
+					elm$json$Json$Decode$succeed(author$project$Main$RaceSummary))))));
 var author$project$Main$Vehicle = function (runningPosition) {
 	return function (vehicleNumber) {
 		return function (state) {
@@ -6502,6 +6506,13 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_fromArray(
 									[
 										elm$html$Html$text('Air-Temp')
+									])),
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('Track-Temp')
 									]))
 							])),
 						A2(
@@ -6541,6 +6552,13 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_fromArray(
 									[
 										elm$html$Html$text(summary.airTemp + ' °C')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(summary.trackTemp + ' °C')
 									]))
 							]))
 					]))
@@ -6565,13 +6583,16 @@ var author$project$Main$viewVehicle = function (d) {
 				elm$html$Html$td,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class(d.category)
+						elm$html$Html$Attributes$class('car-number')
 					]),
 				_List_fromArray(
 					[
 						A2(
 						elm$html$Html$p,
-						_List_Nil,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class(d.category)
+							]),
 						_List_fromArray(
 							[
 								elm$html$Html$text(
