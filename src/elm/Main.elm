@@ -235,8 +235,22 @@ viewRaces d =
         , td [] [ text d.car ]
         , td [] [ text d.tyre ]
         , td [] [ text d.lapsCompleted ]
-        , td [] [ text d.gap ]
-        , td [] [ text d.interval ]
+        , td []
+            [ case d.gap of
+                "" ->
+                    text "-"
+
+                _ ->
+                    text ("+" ++ d.gap)
+            ]
+        , td []
+            [ case d.interval of
+                "" ->
+                    text "-"
+
+                _ ->
+                    text ("+" ++ d.interval)
+            ]
         , td [] [ text d.lastLapTime ]
         , td [] [ text d.bestLapTime ]
         , td [] [ text d.currentSector1 ]

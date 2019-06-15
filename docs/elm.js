@@ -6540,14 +6540,28 @@ var author$project$Main$viewRaces = function (d) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						elm$html$Html$text(d.gap)
+						function () {
+						var _n0 = d.gap;
+						if (_n0 === '') {
+							return elm$html$Html$text('-');
+						} else {
+							return elm$html$Html$text('+' + d.gap);
+						}
+					}()
 					])),
 				A2(
 				elm$html$Html$td,
 				_List_Nil,
 				_List_fromArray(
 					[
-						elm$html$Html$text(d.interval)
+						function () {
+						var _n1 = d.interval;
+						if (_n1 === '') {
+							return elm$html$Html$text('-');
+						} else {
+							return elm$html$Html$text('+' + d.interval);
+						}
+					}()
 					])),
 				A2(
 				elm$html$Html$td,
