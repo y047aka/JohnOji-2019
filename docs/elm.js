@@ -5027,33 +5027,50 @@ var author$project$Main$Race = F2(
 	function (summary, vehicles) {
 		return {summary: summary, vehicles: vehicles};
 	});
-var author$project$Main$RaceSummary = F5(
-	function (eventName, elapsedTime, raceState, airTemp, trackTemp) {
-		return {airTemp: airTemp, elapsedTime: elapsedTime, eventName: eventName, raceState: raceState, trackTemp: trackTemp};
+var author$project$Main$RaceSummary = F9(
+	function (eventName, elapsedTime, raceState, weather, airTemp, trackTemp, humidity, pressure, windSpeed) {
+		return {airTemp: airTemp, elapsedTime: elapsedTime, eventName: eventName, humidity: humidity, pressure: pressure, raceState: raceState, trackTemp: trackTemp, weather: weather, windSpeed: windSpeed};
 	});
+var elm$json$Json$Decode$float = _Json_decodeFloat;
 var elm$json$Json$Decode$string = _Json_decodeString;
 var elm$json$Json$Decode$succeed = _Json_succeed;
 var author$project$Main$raceOutlineDecoder = A3(
 	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-	'trackTemp',
-	elm$json$Json$Decode$string,
+	'windSpeed',
+	elm$json$Json$Decode$float,
 	A3(
 		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-		'airTemp',
-		elm$json$Json$Decode$string,
+		'pressure',
+		elm$json$Json$Decode$float,
 		A3(
 			NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-			'racestate',
-			elm$json$Json$Decode$string,
+			'humidity',
+			elm$json$Json$Decode$float,
 			A3(
 				NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-				'elapsedTime',
+				'trackTemp',
 				elm$json$Json$Decode$string,
 				A3(
 					NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-					'eventName',
+					'airTemp',
 					elm$json$Json$Decode$string,
-					elm$json$Json$Decode$succeed(author$project$Main$RaceSummary))))));
+					A3(
+						NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+						'weather',
+						elm$json$Json$Decode$string,
+						A3(
+							NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+							'racestate',
+							elm$json$Json$Decode$string,
+							A3(
+								NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+								'elapsedTime',
+								elm$json$Json$Decode$string,
+								A3(
+									NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+									'eventName',
+									elm$json$Json$Decode$string,
+									elm$json$Json$Decode$succeed(author$project$Main$RaceSummary))))))))));
 var author$project$Main$Vehicle = function (runningPosition) {
 	return function (vehicleNumber) {
 		return function (state) {
@@ -6454,6 +6471,7 @@ var author$project$Main$siteHeader = A2(
 					elm$html$Html$text('')
 				]))
 		]));
+var elm$core$String$fromFloat = _String_fromNumber;
 var elm$html$Html$section = _VirtualDom_node('section');
 var elm$html$Html$span = _VirtualDom_node('span');
 var elm$html$Html$table = _VirtualDom_node('table');
@@ -6505,6 +6523,13 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_Nil,
 								_List_fromArray(
 									[
+										elm$html$Html$text('Weather')
+									])),
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
 										elm$html$Html$text('Air-Temp')
 									])),
 								A2(
@@ -6513,6 +6538,27 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_fromArray(
 									[
 										elm$html$Html$text('Track-Temp')
+									])),
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('Humidity')
+									])),
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('Pressue')
+									])),
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('WindSpeed')
 									]))
 							])),
 						A2(
@@ -6571,6 +6617,17 @@ var author$project$Main$viewRaceSummary = function (summary) {
 														[
 															elm$html$Html$text('FCY')
 														]));
+											case 'safety_car':
+												return A2(
+													elm$html$Html$span,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('sc')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('SAFETY CAR')
+														]));
 											case 'red':
 												return A2(
 													elm$html$Html$span,
@@ -6598,6 +6655,13 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_Nil,
 								_List_fromArray(
 									[
+										elm$html$Html$text(summary.weather)
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
 										elm$html$Html$text(summary.airTemp + ' °C')
 									])),
 								A2(
@@ -6606,6 +6670,30 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_fromArray(
 									[
 										elm$html$Html$text(summary.trackTemp + ' °C')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										elm$core$String$fromFloat(summary.humidity) + ' %')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										elm$core$String$fromFloat(summary.pressure) + ' hPa')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										elm$core$String$fromFloat(summary.windSpeed) + ' m/s')
 									]))
 							]))
 					]))

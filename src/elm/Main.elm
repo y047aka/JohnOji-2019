@@ -111,8 +111,12 @@ type alias RaceSummary =
     { eventName : String
     , elapsedTime : String
     , raceState : String
+    , weather : String
     , airTemp : String
     , trackTemp : String
+    , humidity : Float
+    , pressure : Float
+    , windSpeed : Float
     }
 
 
@@ -134,8 +138,12 @@ raceOutlineDecoder =
         |> required "eventName" Decode.string
         |> required "elapsedTime" Decode.string
         |> required "racestate" Decode.string
+        |> required "weather" Decode.string
         |> required "airTemp" Decode.string
         |> required "trackTemp" Decode.string
+        |> required "humidity" Decode.float
+        |> required "pressure" Decode.float
+        |> required "windSpeed" Decode.float
 
 
 vehicleDecoder : Decode.Decoder Vehicle
@@ -213,8 +221,12 @@ viewRaceSummary summary =
             [ tr []
                 [ th [] [ text "Elapsed" ]
                 , th [] [ text "State" ]
+                , th [] [ text "Weather" ]
                 , th [] [ text "Air-Temp" ]
                 , th [] [ text "Track-Temp" ]
+                , th [] [ text "Humidity" ]
+                , th [] [ text "Pressue" ]
+                , th [] [ text "WindSpeed" ]
                 ]
             , tr []
                 [ td [] [ text summary.elapsedTime ]
@@ -229,14 +241,21 @@ viewRaceSummary summary =
                         "full_yellow" ->
                             span [ class "fcy" ] [ text "FCY" ]
 
+                        "safety_car" ->
+                            span [ class "sc" ] [ text "SAFETY CAR" ]
+
                         "red" ->
                             span [ class "red" ] [ text "RED FLAG" ]
 
                         _ ->
                             span [] [ text summary.raceState ]
                     ]
+                , td [] [ text summary.weather ]
                 , td [] [ text (summary.airTemp ++ " °C") ]
                 , td [] [ text (summary.trackTemp ++ " °C") ]
+                , td [] [ text (String.fromFloat summary.humidity ++ " %") ]
+                , td [] [ text (String.fromFloat summary.pressure ++ " hPa") ]
+                , td [] [ text (String.fromFloat summary.windSpeed ++ " m/s") ]
                 ]
             ]
         ]

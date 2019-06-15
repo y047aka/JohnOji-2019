@@ -83,14 +83,16 @@ main
     border-collapse: collapse
 
     th, td
-      padding: 0.5rem 2rem 0.5rem 0
       text-align: left
       font-weight: 600
 
     th
+      padding: 0.2rem 2rem 0rem 0
       font-size: 1.1rem
 
     td
+      padding: 0.5rem 2rem 0.5rem 0
+
       &.race-state
         span
           display: block
@@ -104,6 +106,10 @@ main
 
           &.yellow, &.fcy
             background: yellow
+            color: #000
+
+          &.sc
+            background: #DDD
             color: #000
 
           &.red
