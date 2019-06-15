@@ -32,7 +32,7 @@ type alias Model =
 
 type UserState
     = Init
-    | Loaded Vehicles
+    | Loaded Race
     | Failed Http.Error
 
 
@@ -49,7 +49,7 @@ init _ =
 
 type Msg
     = Tick Time.Posix
-    | Recieve (Result Http.Error Vehicles)
+    | Recieve (Result Http.Error Race)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -58,8 +58,8 @@ update msg model =
         Tick posix ->
             ( model, fetchJson (posixToMillis posix) )
 
-        Recieve (Ok vehicles) ->
-            ( { model | userState = Loaded vehicles }, Cmd.none )
+        Recieve (Ok race) ->
+            ( { model | userState = Loaded race }, Cmd.none )
 
         Recieve (Err error) ->
             ( { model | userState = Failed error }, Cmd.none )
@@ -101,8 +101,17 @@ type alias Vehicle =
     }
 
 
-type alias Vehicles =
-    List Vehicle
+type alias Race =
+    { summary : RaceSummary
+    , vehicles : List Vehicle
+    }
+
+
+type alias RaceSummary =
+    { eventName : String
+    , elapsedTime : String
+    , raceState : String
+    }
 
 
 type alias Stop =
@@ -110,13 +119,23 @@ type alias Stop =
     }
 
 
-userDecoder : Decode.Decoder Vehicles
+userDecoder : Decode.Decoder Race
 userDecoder =
-    Decode.field "entries" (Decode.list vehicle)
+    Decode.succeed Race
+        |> required "params" raceOutlineDecoder
+        |> required "entries" (Decode.list vehicleDecoder)
 
 
-vehicle : Decode.Decoder Vehicle
-vehicle =
+raceOutlineDecoder : Decode.Decoder RaceSummary
+raceOutlineDecoder =
+    Decode.succeed RaceSummary
+        |> required "eventName" Decode.string
+        |> required "elapsedTime" Decode.string
+        |> required "racestate" Decode.string
+
+
+vehicleDecoder : Decode.Decoder Vehicle
+vehicleDecoder =
     Decode.succeed Vehicle
         |> required "ranking" Decode.int
         |> required "number" Decode.int
@@ -164,15 +183,16 @@ view model =
     { title = "John Oji 2019"
     , body =
         [ siteHeader
-        , node "main"
-            []
-            [ section []
-                [ case model.userState of
-                    Init ->
-                        text ""
+        , case model.userState of
+            Init ->
+                text ""
 
-                    Loaded vehicles ->
-                        table [ class "leaderboard" ]
+            Loaded race ->
+                node "main"
+                    []
+                    [ viewRaceSummary race.summary
+                    , section []
+                        [ table [ class "leaderboard" ]
                             [ thead []
                                 [ tr []
                                     [ th [] [ text "Pos" ]
@@ -196,32 +216,45 @@ view model =
                                     , th [] [ text "Pit Stops" ]
                                     ]
                                 ]
-                            , tbody [] (List.map viewRaces vehicles)
+                            , tbody [] (List.map viewRaces race.vehicles)
                             ]
+                        ]
+                    ]
 
-                    Failed error ->
-                        div [] [ text (Debug.toString error) ]
-                ]
-            ]
+            Failed error ->
+                text (Debug.toString error)
         , siteFooter
         ]
     }
 
 
+viewRaceSummary : RaceSummary -> Html Msg
+viewRaceSummary summary =
+    section [ class "race-summary" ]
+        [ h1 []
+            [ text summary.eventName ]
+        , table []
+            [ tr []
+                [ th [] [ text "elapsedTime" ]
+                , td [] [ text summary.elapsedTime ]
+                ]
+            , tr []
+                [ th [] [ text "raceState" ]
+                , td [ class "race-state" ]
+                    [ span [ class summary.raceState ]
+                        [ text summary.raceState ]
+                    ]
+                ]
+            , tr []
+                [ th [] [ text "" ]
+                , td [] [ text "" ]
+                ]
+            ]
+        ]
+
+
 viewRaces : Vehicle -> Html Msg
 viewRaces d =
-    -- let
-    --     manufacturer =
-    --         case d.vehicleManufacturer of
-    --             "Chv" ->
-    --                 "Chevrolet"
-    --             "Frd" ->
-    --                 "Ford"
-    --             "Tyt" ->
-    --                 "Toyota"
-    --             _ ->
-    --                 ""
-    -- in
     tr []
         [ td [] [ text (String.fromInt d.runningPosition) ]
         , td [ class d.category ]
@@ -271,7 +304,7 @@ pitStop stop =
 siteHeader : Html Msg
 siteHeader =
     Html.header [ class "site-header" ]
-        [ h1 [] [ text "Leaderboard" ]
+        [ h1 [] [ text "" ]
         ]
 
 

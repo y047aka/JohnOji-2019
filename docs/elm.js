@@ -5023,6 +5023,29 @@ var NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required = F3(
 			A2(elm$json$Json$Decode$field, key, valDecoder),
 			decoder);
 	});
+var author$project$Main$Race = F2(
+	function (summary, vehicles) {
+		return {summary: summary, vehicles: vehicles};
+	});
+var author$project$Main$RaceSummary = F3(
+	function (eventName, elapsedTime, raceState) {
+		return {elapsedTime: elapsedTime, eventName: eventName, raceState: raceState};
+	});
+var elm$json$Json$Decode$string = _Json_decodeString;
+var elm$json$Json$Decode$succeed = _Json_succeed;
+var author$project$Main$raceOutlineDecoder = A3(
+	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+	'racestate',
+	elm$json$Json$Decode$string,
+	A3(
+		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+		'elapsedTime',
+		elm$json$Json$Decode$string,
+		A3(
+			NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+			'eventName',
+			elm$json$Json$Decode$string,
+			elm$json$Json$Decode$succeed(author$project$Main$RaceSummary))));
 var author$project$Main$Vehicle = function (runningPosition) {
 	return function (vehicleNumber) {
 		return function (state) {
@@ -5065,9 +5088,7 @@ var author$project$Main$Vehicle = function (runningPosition) {
 	};
 };
 var elm$json$Json$Decode$int = _Json_decodeInt;
-var elm$json$Json$Decode$string = _Json_decodeString;
-var elm$json$Json$Decode$succeed = _Json_succeed;
-var author$project$Main$vehicle = A3(
+var author$project$Main$vehicleDecoder = A3(
 	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
 	'pitstop',
 	elm$json$Json$Decode$int,
@@ -5149,10 +5170,15 @@ var author$project$Main$vehicle = A3(
 																				elm$json$Json$Decode$int,
 																				elm$json$Json$Decode$succeed(author$project$Main$Vehicle)))))))))))))))))))));
 var elm$json$Json$Decode$list = _Json_decodeList;
-var author$project$Main$userDecoder = A2(
-	elm$json$Json$Decode$field,
+var author$project$Main$userDecoder = A3(
+	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
 	'entries',
-	elm$json$Json$Decode$list(author$project$Main$vehicle));
+	elm$json$Json$Decode$list(author$project$Main$vehicleDecoder),
+	A3(
+		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+		'params',
+		author$project$Main$raceOutlineDecoder,
+		elm$json$Json$Decode$succeed(author$project$Main$Race)));
 var elm$core$Result$mapError = F2(
 	function (f, result) {
 		if (result.$ === 'Ok') {
@@ -6358,12 +6384,12 @@ var author$project$Main$update = F2(
 					elm$time$Time$posixToMillis(posix)));
 		} else {
 			if (msg.a.$ === 'Ok') {
-				var vehicles = msg.a.a;
+				var race = msg.a.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{
-							userState: author$project$Main$Loaded(vehicles)
+							userState: author$project$Main$Loaded(race)
 						}),
 					elm$core$Platform$Cmd$none);
 			} else {
@@ -6457,11 +6483,111 @@ var author$project$Main$siteHeader = A2(
 			_List_Nil,
 			_List_fromArray(
 				[
-					elm$html$Html$text('Leaderboard')
+					elm$html$Html$text('')
 				]))
 		]));
+var elm$html$Html$section = _VirtualDom_node('section');
+var elm$html$Html$span = _VirtualDom_node('span');
+var elm$html$Html$table = _VirtualDom_node('table');
 var elm$html$Html$td = _VirtualDom_node('td');
+var elm$html$Html$th = _VirtualDom_node('th');
 var elm$html$Html$tr = _VirtualDom_node('tr');
+var author$project$Main$viewRaceSummary = function (summary) {
+	return A2(
+		elm$html$Html$section,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$class('race-summary')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$h1,
+				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$text(summary.eventName)
+					])),
+				A2(
+				elm$html$Html$table,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('elapsedTime')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(summary.elapsedTime)
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('raceState')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('race-state')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$span,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class(summary.raceState)
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text(summary.raceState)
+											]))
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('')
+									]))
+							]))
+					]))
+			]));
+};
 var author$project$Main$viewRaces = function (d) {
 	return A2(
 		elm$html$Html$tr,
@@ -6639,41 +6765,38 @@ var author$project$Main$viewRaces = function (d) {
 			]));
 };
 var elm$core$Debug$toString = _Debug_toString;
-var elm$html$Html$div = _VirtualDom_node('div');
 var elm$virtual_dom$VirtualDom$node = function (tag) {
 	return _VirtualDom_node(
 		_VirtualDom_noScript(tag));
 };
 var elm$html$Html$node = elm$virtual_dom$VirtualDom$node;
-var elm$html$Html$section = _VirtualDom_node('section');
-var elm$html$Html$table = _VirtualDom_node('table');
 var elm$html$Html$tbody = _VirtualDom_node('tbody');
-var elm$html$Html$th = _VirtualDom_node('th');
 var elm$html$Html$thead = _VirtualDom_node('thead');
 var author$project$Main$view = function (model) {
 	return {
 		body: _List_fromArray(
 			[
 				author$project$Main$siteHeader,
-				A3(
-				elm$html$Html$node,
-				'main',
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						elm$html$Html$section,
-						_List_Nil,
-						_List_fromArray(
-							[
-								function () {
-								var _n0 = model.userState;
-								switch (_n0.$) {
-									case 'Init':
-										return elm$html$Html$text('');
-									case 'Loaded':
-										var vehicles = _n0.a;
-										return A2(
+				function () {
+				var _n0 = model.userState;
+				switch (_n0.$) {
+					case 'Init':
+						return elm$html$Html$text('');
+					case 'Loaded':
+						var race = _n0.a;
+						return A3(
+							elm$html$Html$node,
+							'main',
+							_List_Nil,
+							_List_fromArray(
+								[
+									author$project$Main$viewRaceSummary(race.summary),
+									A2(
+									elm$html$Html$section,
+									_List_Nil,
+									_List_fromArray(
+										[
+											A2(
 											elm$html$Html$table,
 											_List_fromArray(
 												[
@@ -6829,22 +6952,16 @@ var author$project$Main$view = function (model) {
 													A2(
 													elm$html$Html$tbody,
 													_List_Nil,
-													A2(elm$core$List$map, author$project$Main$viewRaces, vehicles))
-												]));
-									default:
-										var error = _n0.a;
-										return A2(
-											elm$html$Html$div,
-											_List_Nil,
-											_List_fromArray(
-												[
-													elm$html$Html$text(
-													elm$core$Debug$toString(error))
-												]));
-								}
-							}()
-							]))
-					])),
+													A2(elm$core$List$map, author$project$Main$viewRaces, race.vehicles))
+												]))
+										]))
+								]));
+					default:
+						var error = _n0.a;
+						return elm$html$Html$text(
+							elm$core$Debug$toString(error));
+				}
+			}(),
 				author$project$Main$siteFooter
 			]),
 		title: 'John Oji 2019'

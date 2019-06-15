@@ -48,6 +48,7 @@ body
     right: 3rem
 
 header.site-header
+  display: none
 
   h1
     padding: 3rem 0 0
@@ -136,6 +137,34 @@ main
 
           &.best-time
             color: hsl(50, 100%, 45%)
+
+.race-summary
+  padding: 1rem 2rem
+
+  table
+    border-collapse: collapse
+
+    th
+      padding: 0
+      text-align: left
+
+    td
+      padding: 0.8rem 1rem
+
+      &.race-state
+        text-transform: uppercase
+
+      span
+        padding: 0.2rem 0.5rem
+        font-weight: bold
+        letter-spacing: 0.05rem
+        border-radius: 0.3rem
+
+        &.green
+          background: green
+
+        &.full_yellow
+          background: yellow
 
 footer.site-footer
   a

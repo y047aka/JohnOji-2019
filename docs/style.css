@@ -44,9 +44,11 @@ body {
     top: 3.5rem;
     right: 3rem; }
 
-header.site-header h1 {
-  padding: 3rem 0 0;
-  font-size: 2.5rem; }
+header.site-header {
+  display: none; }
+  header.site-header h1 {
+    padding: 3rem 0 0;
+    font-size: 2.5rem; }
 
 main {
   border-top: solid 0.1rem rgba(46, 77, 107, 0.5);
@@ -105,6 +107,27 @@ main {
         background: #e68600; }
       main table.leaderboard tbody tr td.best-time {
         color: #e6bf00; }
+
+.race-summary {
+  padding: 1rem 2rem; }
+  .race-summary table {
+    border-collapse: collapse; }
+    .race-summary table th {
+      padding: 0;
+      text-align: left; }
+    .race-summary table td {
+      padding: 0.8rem 1rem; }
+      .race-summary table td.race-state {
+        text-transform: uppercase; }
+      .race-summary table td span {
+        padding: 0.2rem 0.5rem;
+        font-weight: bold;
+        letter-spacing: 0.05rem;
+        border-radius: 0.3rem; }
+        .race-summary table td span.green {
+          background: green; }
+        .race-summary table td span.full_yellow {
+          background: yellow; }
 
 footer.site-footer a {
   color: #265973;
