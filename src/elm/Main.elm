@@ -17,7 +17,7 @@ main =
         { init = init
         , update = update
         , view = view
-        , subscriptions = subscriptions
+        , subscriptions = \_ -> Sub.none
         }
 
 
@@ -235,19 +235,23 @@ viewRaceSummary summary =
                                     remainInt =
                                         ceiling remainFloat
 
-                                    hours =
-                                        (remainInt // 3600)
+                                    strHours =
+                                        remainInt
+                                            // 3600
                                             |> String.fromInt
 
-                                    minutes =
-                                        (modBy 3600 remainInt // 60)
+                                    strMinutes =
+                                        modBy 3600 remainInt
+                                            // 60
                                             |> String.fromInt
 
-                                    seconds =
-                                        modBy 60 (modBy 3600 remainInt)
+                                    strSeconds =
+                                        remainInt
+                                            |> modBy 3600
+                                            |> modBy 60
                                             |> String.fromInt
                                 in
-                                hours ++ ":" ++ minutes ++ ":" ++ seconds
+                                strHours ++ ":" ++ strMinutes ++ ":" ++ strSeconds
                            )
                         |> text
                     ]
