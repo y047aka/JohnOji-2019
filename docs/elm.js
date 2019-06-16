@@ -6498,11 +6498,31 @@ var author$project$Main$viewRaceSummary = function (summary) {
 						_List_fromArray(
 							[
 								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('Race')
+									])),
+								A2(
 								elm$html$Html$td,
 								_List_Nil,
 								_List_fromArray(
 									[
 										elm$html$Html$text(summary.eventName)
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('Elapsed')
 									])),
 								A2(
 								elm$html$Html$td,
@@ -6510,13 +6530,26 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_fromArray(
 									[
 										elm$html$Html$text(summary.elapsedTime)
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('race-state')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('State')
 									])),
 								A2(
 								elm$html$Html$td,
-								_List_fromArray(
-									[
-										elm$html$Html$Attributes$class('race-state')
-									]),
+								_List_Nil,
 								_List_fromArray(
 									[
 										function () {
@@ -6587,54 +6620,29 @@ var author$project$Main$viewRaceSummary = function (summary) {
 														]));
 										}
 									}()
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('weather')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('Weather')
 									])),
 								A2(
 								elm$html$Html$td,
-								_List_fromArray(
-									[
-										elm$html$Html$Attributes$class('weather')
-									]),
+								_List_Nil,
 								_List_fromArray(
 									[
 										elm$html$Html$text(summary.weather)
-									])),
-								A2(
-								elm$html$Html$td,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text(summary.airTemp + ' °C')
-									])),
-								A2(
-								elm$html$Html$td,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text(summary.trackTemp + ' °C')
-									])),
-								A2(
-								elm$html$Html$td,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text(
-										elm$core$String$fromFloat(summary.humidity) + ' %')
-									])),
-								A2(
-								elm$html$Html$td,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text(
-										elm$core$String$fromFloat(summary.pressure) + ' hPa')
-									])),
-								A2(
-								elm$html$Html$td,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text(
-										elm$core$String$fromFloat(summary.windSpeed) + ' m/s')
 									]))
 							])),
 						A2(
@@ -6647,36 +6655,21 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_Nil,
 								_List_fromArray(
 									[
-										elm$html$Html$text('Race')
-									])),
-								A2(
-								elm$html$Html$th,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text('Elapsed')
-									])),
-								A2(
-								elm$html$Html$th,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text('State')
-									])),
-								A2(
-								elm$html$Html$th,
-								_List_Nil,
-								_List_fromArray(
-									[
-										elm$html$Html$text('Weather')
-									])),
-								A2(
-								elm$html$Html$th,
-								_List_Nil,
-								_List_fromArray(
-									[
 										elm$html$Html$text('Air-Temp')
 									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(summary.airTemp + ' °C')
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
 								A2(
 								elm$html$Html$th,
 								_List_Nil,
@@ -6685,12 +6678,39 @@ var author$project$Main$viewRaceSummary = function (summary) {
 										elm$html$Html$text('Track-Temp')
 									])),
 								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(summary.trackTemp + ' °C')
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
 								elm$html$Html$th,
 								_List_Nil,
 								_List_fromArray(
 									[
 										elm$html$Html$text('Humidity')
 									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										elm$core$String$fromFloat(summary.humidity) + ' %')
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
 								A2(
 								elm$html$Html$th,
 								_List_Nil,
@@ -6699,11 +6719,33 @@ var author$project$Main$viewRaceSummary = function (summary) {
 										elm$html$Html$text('Pressue')
 									])),
 								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										elm$core$String$fromFloat(summary.pressure) + ' hPa')
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
 								elm$html$Html$th,
 								_List_Nil,
 								_List_fromArray(
 									[
 										elm$html$Html$text('WindSpeed')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										elm$core$String$fromFloat(summary.windSpeed) + ' m/s')
 									]))
 							]))
 					]))

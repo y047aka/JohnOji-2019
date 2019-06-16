@@ -80,30 +80,41 @@ main
   padding: 1.5rem 0
 
   table
+    display: grid
+    grid-auto-flow: column
+    justify-content: center
     margin: 0 auto
     border-collapse: collapse
 
-    th, td
-      text-align: center
-      font-weight: 600
+    tr
+      display: grid
+      grid-row-gap: 0.4rem
+      border-right: solid 0.1rem #444
 
-    th + th, td + td
-      border-left: solid 0.1rem #444
+      &:first-child
+        border-left: solid 0.1rem #444
 
-    th
-      padding: 0.2rem 1.5rem 0
-      font-size: 0.9rem
+      th, td
+        display: block
+        text-align: center
+        font-weight: 600
 
-    td
-      padding: 0 1.5rem 0.2rem 
+      th
+        grid-row: 2
+        padding: 0 1.5rem
+        font-size: 0.9rem
+
+      td
+        grid-row: 1
+        padding: 0 1.5rem
 
       &.race-state
         span
           display: block
-          min-width: 13rem
+          min-width: 15rem
           padding: 0.2rem
           text-align: center
-          border-radius: 0.3rem
+          border-radius: 0.1rem
 
           &.green
             background: green

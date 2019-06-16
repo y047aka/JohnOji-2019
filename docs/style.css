@@ -74,35 +74,45 @@ main a {
 .race-summary {
   padding: 1.5rem 0; }
   .race-summary table {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
     margin: 0 auto;
     border-collapse: collapse; }
-    .race-summary table th, .race-summary table td {
-      text-align: center;
-      font-weight: 600; }
-    .race-summary table th + th, .race-summary table td + td {
-      border-left: solid 0.1rem #444; }
-    .race-summary table th {
-      padding: 0.2rem 1.5rem 0;
-      font-size: 0.9rem; }
-    .race-summary table td {
-      padding: 0 1.5rem 0.2rem; }
-      .race-summary table td.race-state span {
+    .race-summary table tr {
+      display: grid;
+      grid-row-gap: 0.4rem;
+      border-right: solid 0.1rem #444; }
+      .race-summary table tr:first-child {
+        border-left: solid 0.1rem #444; }
+      .race-summary table tr th, .race-summary table tr td {
         display: block;
-        min-width: 13rem;
+        text-align: center;
+        font-weight: 600; }
+      .race-summary table tr th {
+        grid-row: 2;
+        padding: 0 1.5rem;
+        font-size: 0.9rem; }
+      .race-summary table tr td {
+        grid-row: 1;
+        padding: 0 1.5rem; }
+      .race-summary table tr.race-state span {
+        display: block;
+        min-width: 15rem;
         padding: 0.2rem;
         text-align: center;
-        border-radius: 0.3rem; }
-        .race-summary table td.race-state span.green {
+        border-radius: 0.1rem; }
+        .race-summary table tr.race-state span.green {
           background: green; }
-        .race-summary table td.race-state span.yellow, .race-summary table td.race-state span.fcy {
+        .race-summary table tr.race-state span.yellow, .race-summary table tr.race-state span.fcy {
           background: yellow;
           color: #000; }
-        .race-summary table td.race-state span.sc {
+        .race-summary table tr.race-state span.sc {
           background: #DDD;
           color: #000; }
-        .race-summary table td.race-state span.red {
+        .race-summary table tr.race-state span.red {
           background: red; }
-      .race-summary table td.weather {
+      .race-summary table tr.weather {
         text-transform: uppercase; }
 
 .leaderboard {
