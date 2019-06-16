@@ -5027,50 +5027,71 @@ var author$project$Main$Race = F2(
 	function (summary, vehicles) {
 		return {summary: summary, vehicles: vehicles};
 	});
-var author$project$Main$RaceSummary = F9(
-	function (eventName, elapsedTime, raceState, weather, airTemp, trackTemp, humidity, pressure, windSpeed) {
-		return {airTemp: airTemp, elapsedTime: elapsedTime, eventName: eventName, humidity: humidity, pressure: pressure, raceState: raceState, trackTemp: trackTemp, weather: weather, windSpeed: windSpeed};
-	});
+var author$project$Main$RaceSummary = function (eventName) {
+	return function (elapsedTime) {
+		return function (raceState) {
+			return function (weather) {
+				return function (airTemp) {
+					return function (trackTemp) {
+						return function (humidity) {
+							return function (pressure) {
+								return function (windSpeed) {
+									return function (remaining) {
+										return {airTemp: airTemp, elapsedTime: elapsedTime, eventName: eventName, humidity: humidity, pressure: pressure, raceState: raceState, remaining: remaining, trackTemp: trackTemp, weather: weather, windSpeed: windSpeed};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
 var elm$json$Json$Decode$float = _Json_decodeFloat;
 var elm$json$Json$Decode$string = _Json_decodeString;
 var elm$json$Json$Decode$succeed = _Json_succeed;
 var author$project$Main$raceOutlineDecoder = A3(
 	NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-	'windSpeed',
+	'remaining',
 	elm$json$Json$Decode$float,
 	A3(
 		NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-		'pressure',
+		'windSpeed',
 		elm$json$Json$Decode$float,
 		A3(
 			NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-			'humidity',
+			'pressure',
 			elm$json$Json$Decode$float,
 			A3(
 				NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-				'trackTemp',
-				elm$json$Json$Decode$string,
+				'humidity',
+				elm$json$Json$Decode$float,
 				A3(
 					NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-					'airTemp',
+					'trackTemp',
 					elm$json$Json$Decode$string,
 					A3(
 						NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-						'weather',
+						'airTemp',
 						elm$json$Json$Decode$string,
 						A3(
 							NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-							'racestate',
+							'weather',
 							elm$json$Json$Decode$string,
 							A3(
 								NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-								'elapsedTime',
+								'racestate',
 								elm$json$Json$Decode$string,
 								A3(
 									NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-									'eventName',
+									'elapsedTime',
 									elm$json$Json$Decode$string,
-									elm$json$Json$Decode$succeed(author$project$Main$RaceSummary))))))))));
+									A3(
+										NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
+										'eventName',
+										elm$json$Json$Decode$string,
+										elm$json$Json$Decode$succeed(author$project$Main$RaceSummary)))))))))));
 var author$project$Main$Vehicle = function (runningPosition) {
 	return function (vehicleNumber) {
 		return function (state) {
@@ -6471,6 +6492,7 @@ var author$project$Main$siteHeader = A2(
 					elm$html$Html$text('')
 				]))
 		]));
+var elm$core$Basics$modBy = _Basics_modBy;
 var elm$core$String$fromFloat = _String_fromNumber;
 var elm$html$Html$section = _VirtualDom_node('section');
 var elm$html$Html$span = _VirtualDom_node('span');
@@ -6530,6 +6552,38 @@ var author$project$Main$viewRaceSummary = function (summary) {
 								_List_fromArray(
 									[
 										elm$html$Html$text(summary.elapsedTime)
+									]))
+							])),
+						A2(
+						elm$html$Html$tr,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$th,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text('Remaining')
+									])),
+								A2(
+								elm$html$Html$td,
+								_List_Nil,
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										function (remainFloat) {
+											var remainInt = elm$core$Basics$ceiling(remainFloat);
+											var seconds = elm$core$String$fromInt(
+												A2(
+													elm$core$Basics$modBy,
+													60,
+													A2(elm$core$Basics$modBy, 3600, remainInt)));
+											var minutes = elm$core$String$fromInt(
+												(A2(elm$core$Basics$modBy, 3600, remainInt) / 60) | 0);
+											var hours = elm$core$String$fromInt((remainInt / 3600) | 0);
+											return hours + (':' + (minutes + (':' + seconds)));
+										}(summary.remaining))
 									]))
 							])),
 						A2(

@@ -117,6 +117,7 @@ type alias RaceSummary =
     , humidity : Float
     , pressure : Float
     , windSpeed : Float
+    , remaining : Float
     }
 
 
@@ -144,6 +145,7 @@ raceOutlineDecoder =
         |> required "humidity" Decode.float
         |> required "pressure" Decode.float
         |> required "windSpeed" Decode.float
+        |> required "remaining" Decode.float
 
 
 vehicleDecoder : Decode.Decoder Vehicle
@@ -223,6 +225,32 @@ viewRaceSummary summary =
             , tr []
                 [ th [] [ text "Elapsed" ]
                 , td [] [ text summary.elapsedTime ]
+                ]
+            , tr []
+                [ th [] [ text "Remaining" ]
+                , td []
+                    [ summary.remaining
+                        |> (\remainFloat ->
+                                let
+                                    remainInt =
+                                        ceiling remainFloat
+
+                                    hours =
+                                        (remainInt // 3600)
+                                            |> String.fromInt
+
+                                    minutes =
+                                        (modBy 3600 remainInt // 60)
+                                            |> String.fromInt
+
+                                    seconds =
+                                        modBy 60 (modBy 3600 remainInt)
+                                            |> String.fromInt
+                                in
+                                hours ++ ":" ++ minutes ++ ":" ++ seconds
+                           )
+                        |> text
+                    ]
                 ]
             , tr [ class "race-state" ]
                 [ th [] [ text "State" ]
